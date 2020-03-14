@@ -3,6 +3,7 @@ import SingleMovieBrief from './SingleMovieBrief';
 import loader from '../../../images/loader2.gif';
 import MovieView from './MovieView';
 import ActorProfileContainer from '../tabs-cast-crew/actor/ActorProfileContainer';
+import Axios from 'axios';
 
 //This Class has only one Parent: Main
 //this class has three child components: SingleMovieBrief, MovieView and ActorProfileContainer
@@ -14,7 +15,8 @@ class AllMovieList extends React.Component {
         super()
         this.childKey = 0; //we want to destroy this class and remount it 
         this.state={
-            viewID : 0
+            viewID : 0,
+            found:[]
         }
         this.conditionalRendering = this.conditionalRendering.bind(this);
         this.getViewID = this.getViewID.bind(this);
@@ -28,17 +30,17 @@ class AllMovieList extends React.Component {
             renderThis = <p className="isLoading" ><img src={loader} alt="Loading" height="80" width="80"/>Loading API....</p>
         } else {
             if (this.props.searchFLAG) {
-                const found = this.props.movieData.filter(item => {
-                    return item.title.toUpperCase().includes(this.props.searchValue.toUpperCase())
+                Axios.get('/api/find/title/' + this.props.searchValue).then(resp => {
+                    this.setState({found:resp.data})
                 })
 
-                if (found.length === 0) {
+                if (this.state.found.length === 0) {
                     renderThis = <p className="noResult" id="noResult" >Search Result For "{this.props.searchValue}" Not Found! Try Search Again.
                 <br />Or Try Filter option
             </p>
                 }
                 else {
-                    renderThis = found.map((item, index) => {
+                    renderThis = this.state.found.map((item, index) => {
                         return <SingleMovieBrief key={index} poster={item.poster} title={item.title} release_date={item.release_date} ratings={item.ratings.average} addToFav={this.props.addToFav} id={item.id} tagline={item.tagline} getViewID={this.getViewID}/>
                     })
                 }
