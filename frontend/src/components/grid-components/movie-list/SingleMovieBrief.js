@@ -23,7 +23,10 @@ class SingleMovieBrief extends React.Component {
 
     
     render() {
-        const poster = "https://image.tmdb.org/t/p/w780/" + this.props.poster;
+        let poster;
+        if (this.props.poster !== null && this.props.poster !== undefined) {
+            poster = "https://image.tmdb.org/t/p/w780/" + this.props.poster;
+        }
         return (
             <div className="card">
                 <div className="card-header">
@@ -47,5 +50,5 @@ class SingleMovieBrief extends React.Component {
         )
     }
 }
-                        
-                        export default SingleMovieBrief
+
+export default SingleMovieBrief

@@ -558,6 +558,16 @@
         margin: 8px 0;
         box-sizing: border-box;
         border: 1px solid;
+        text-shadow: 1px 1px 2px #153b4b; 
+      }
+
+      .filter input[type=text]:enabled{
+        width:200px; 
+        height: 30px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid;
         box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
         outline-color: rgba(255, 255, 255, 0);
         outline-offset: 15px;

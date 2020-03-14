@@ -1,25 +1,22 @@
 import React from 'react'
 import FilterComponent from './FilterComponent'
+import Axios from 'axios';
 
 //This class has only one parent: FilterContainer
 //this is responsible to provide filter data/result
 
 const INITALSTATE = {
+    betweenTitleRadio:false,
     titleSearch : "",
-    beforeRadio:true,
-    afterRadio:false,
-    betweenRadio:false,
-    beforeYear:"2020",
-    afterYear:"1900",
+    betweenYearRadio:false,
     betweenStartYear:"1900",
     betweenEndYear:"2020",
-    belowRadio:true,
-    aboveRadio:false,
     betweenRatingRadio:false,
-    belowSlider:10,
-    aboveSlider:1,
     betweenStartSlider:1,
-    betweenEndSlider:10
+    betweenEndSlider:10,
+    foundTitle:[],
+    foundYear:[],
+    foundRating:[]
 }
 class FilterContainer extends React.Component {
     constructor(){
@@ -35,50 +32,33 @@ class FilterContainer extends React.Component {
 //handle change on Form Elements
     handleChange(e){
         const {name, value} = e.target;
-        const beforeYearSearch = document.getElementById("beforeYearSearch");
-        const afterYearSearch = document.getElementById("afterYearSearch");
+        const titleSearchBox = document.getElementById("titleSearchBox");
         const betweenStartingYearSearch = document.getElementById("betweenStartingYearSearch");
         const betweenEndingYearSearch = document.getElementById("betweenEndingYearSearch");
-        const belowRating = document.getElementById("belowRating");
-        const aboveRating = document.getElementById("aboveRating");
         const betweenStartRating = document.getElementById("betweenStartRating");
         const betweenEndRating = document.getElementById("betweenEndRating");
+
+        if (value === "betweenTitleRadioValue") {
+            this.setState( {betweenTitleRadio: true, betweenYearRadio : false, betweenRatingRadio: false} )
+            titleSearchBox.disabled = false;
+            betweenStartingYearSearch.disabled= true;
+            betweenEndingYearSearch.disabled= true;
+            betweenStartRating.disabled = true;
+            betweenEndRating.disabled = true;
+        }
 
         if (name === "titleSearch")
         {
             this.setState( {titleSearch : value} )
         }
 
-        if (value === "before") {
-            this.setState( {beforeRadio : true, afterRadio : false, betweenRadio : false} )       
-            beforeYearSearch.disabled= false;
-            afterYearSearch.disabled= true;
-            betweenStartingYearSearch.disabled= true;
-            betweenEndingYearSearch.disabled= true;
-        }
-
-        if (value === "after") {
-            this.setState( {beforeRadio : false, afterRadio : true, betweenRadio : false} )
-            beforeYearSearch.disabled= true;
-            afterYearSearch.disabled= false;
-            betweenStartingYearSearch.disabled= true;
-            betweenEndingYearSearch.disabled= true;
-        }
-
-        if (value === "between") {
-            this.setState( {beforeRadio : false, afterRadio : false, betweenRadio : true} )
-            beforeYearSearch.disabled= true;
-            afterYearSearch.disabled= true;
+        if (value === "betweenYear") {
+            this.setState( {betweenTitleRadio: false, betweenYearRadio : true, betweenRatingRadio: false} )
+            titleSearchBox.disabled = true;
             betweenStartingYearSearch.disabled= false;
             betweenEndingYearSearch.disabled= false;
-        }
-
-        if(name === "beforeYearSearch") {
-            this.setState( {beforeYear : value} )
-        }
-
-        if(name === "afterYearSearch") {
-            this.setState( {afterYear : value} )
+            betweenStartRating.disabled = true;
+            betweenEndRating.disabled = true;
         }
 
         if(name === "betweenStartingYearSearch") {
@@ -89,36 +69,13 @@ class FilterContainer extends React.Component {
             this.setState( {betweenEndYear : value} )
         }
 
-        if (value==="below"){
-            this.setState( {belowRadio : true, aboveRadio : false, betweenRatingRadio : false} )
-            belowRating.disabled=false;
-            aboveRating.disabled=true;
-            betweenStartRating.disabled=true;
-            betweenEndRating.disabled=true;
-        }
-
-        if (value==="above"){
-            this.setState( {belowRadio : false, aboveRadio : true, betweenRatingRadio : false} )  
-            belowRating.disabled=true;
-            aboveRating.disabled=false;
-            betweenStartRating.disabled=true;
-            betweenEndRating.disabled=true;
-        }
-
         if (value==="betweenRatings"){
-            this.setState( {belowRadio : false, aboveRadio : false, betweenRatingRadio : true} )  
-            belowRating.disabled=true;
-            aboveRating.disabled=true;
+            this.setState( {betweenTitleRadio: false, betweenYearRadio : false, betweenRatingRadio: true} )
+            titleSearchBox.disabled = true;  
+            betweenStartingYearSearch.disabled= true;
+            betweenEndingYearSearch.disabled= true;
             betweenStartRating.disabled=false;
             betweenEndRating.disabled=false;
-        }
-
-        if (name==="belowRating"){
-            this.setState( {belowSlider : value} )
-        }
-
-        if (name==="aboveRating"){
-            this.setState( {aboveSlider : value} )
         }
 
         if (name==="betweenStartRating"){
@@ -135,56 +92,34 @@ class FilterContainer extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        let filteredByDate;
-        let filteredByRating;
-
-        const foundTitle = this.props.movieData.filter(item => {
-            return item.title.toUpperCase().includes(this.state.titleSearch.toUpperCase())
+        Axios.get('/api/find/title/' + this.state.titleSearch).then(resp => {
+            this.setState({ foundTitle: resp.data }, () => {
+                this.props.getFilterResult(this.state.foundTitle)
+            })
         })
 
-        if (this.state.beforeRadio) {
-            filteredByDate = foundTitle.filter(item => {
-                return item.release_date < this.state.beforeYear
-            })
-        }
-        else if (this.state.afterRadio) {
-            filteredByDate = foundTitle.filter(item => {
-                return item.release_date > this.state.afterYear
-            })
-        }
-        else if (this.state.betweenRadio){
-            filteredByDate = foundTitle.filter(item => {
-                return item.release_date >= this.state.betweenStartYear && item.release_date <= this.state.betweenEndYear
+        if (this.state.betweenYearRadio){
+            Axios.get('api/find/year/' + this.state.betweenStartYear + "/"+ this.state.betweenEndYear).then(resp => {
+                this.setState({ foundYear: resp.data }, ()=>{
+                    this.props.getFilterResult(this.state.foundYear)
+                })
             })
         }
 
-        if (this.state.belowRadio){
-            filteredByRating = filteredByDate.filter(item => {
-                return item.ratings.average < this.state.belowSlider
+        if (this.state.betweenRatingRadio){
+            Axios.get('api/find/rating/' + this.state.betweenStartSlider  + "/"+ this.state.betweenEndSlider).then(resp => {
+                this.setState({ foundRating: resp.data }, ()=>{
+                    this.props.getFilterResult(this.state.foundRating)
+                })
             })
         }
-        else if (this.state.aboveRadio){
-            filteredByRating = filteredByDate.filter(item => {
-                return item.ratings.average > this.state.aboveSlider
-            })
-        }
-        else if (this.state.betweenRatingRadio){
-            filteredByRating = filteredByDate.filter(item => {
-                return item.ratings.average >= this.state.betweenStartSlider && item.ratings.average <= this.state.betweenEndSlider 
-            })
-        }
-
-        this.props.getFilterResult(filteredByRating)
     }
 
     //handle clear request
     handleClear(e){
-        const beforeYearSearch = document.getElementById("beforeYearSearch");
-        const afterYearSearch = document.getElementById("afterYearSearch");
+        const titleSearchBox = document.getElementById("titleSearchBox");
         const betweenStartingYearSearch = document.getElementById("betweenStartingYearSearch");
         const betweenEndingYearSearch = document.getElementById("betweenEndingYearSearch");
-        const belowRating = document.getElementById("belowRating");
-        const aboveRating = document.getElementById("aboveRating");
         const betweenStartRating = document.getElementById("betweenStartRating");
         const betweenEndRating = document.getElementById("betweenEndRating");
 
@@ -192,12 +127,9 @@ class FilterContainer extends React.Component {
         this.props.setListAllFLAG();
         this.setState(INITALSTATE);
 
-        beforeYearSearch.disabled= false;
-        afterYearSearch.disabled= true;
+        titleSearchBox.disabled=true;
         betweenStartingYearSearch.disabled= true;
         betweenEndingYearSearch.disabled= true;
-        belowRating.disabled=false;
-        aboveRating.disabled=true;
         betweenStartRating.disabled=true;
         betweenEndRating.disabled=true;
     }
@@ -226,12 +158,11 @@ class FilterContainer extends React.Component {
     render() {
         return (
             <FilterComponent titleSearch={this.state.titleSearch} handleChange={this.handleChange} 
-            handleSubmit={this.handleSubmit} beforeRadio={this.state.beforeRadio} afterRadio={this.state.afterRadio}
-            betweenRadio={this.state.betweenRadio} beforeYear={this.state.beforeYear} afterYear={this.state.afterYear}
+            handleSubmit={this.handleSubmit} betweenTitleRadio={this.state.betweenTitleRadio}
+            betweenYearRadio={this.state.betweenYearRadio}
             betweenStartYear={this.state.betweenStartYear} betweenEndYear={this.state.betweenEndYear}
-            belowRadio={this.state.belowRadio} aboveRadio={this.state.aboveRadio} 
-            betweenRatingRadio={this.state.betweenRatingRadio} belowSlider={this.state.belowSlider} 
-            aboveSlider={this.state.aboveSlider} betweenStartSlider={this.state.betweenStartSlider}
+            betweenRatingRadio={this.state.betweenRatingRadio}
+            betweenStartSlider={this.state.betweenStartSlider}
             betweenEndSlider={this.state.betweenEndSlider} handleClear={this.handleClear}
             filterPopup={this.filterPopup}/>
         )
