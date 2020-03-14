@@ -1,0 +1,8 @@
+{
+    "name": "Node js getting started",
+    "description": "MERN FULLSTACK SERVER",
+    "repository": "git+https://github.com/AttitudeFever/MERN-FullStack.git",
+    "logo": "http://node-js-sample.herokuapp.com/node.svg",
+    "keywords":["node", "express", "MogoDB"],
+    "image": ""
+}

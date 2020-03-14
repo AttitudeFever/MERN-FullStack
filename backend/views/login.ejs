@@ -1,0 +1,29 @@
+<div class="container">
+   <h1 class="title">Login</h1>
+   <div class="box">
+      <form action="/login" method="post">
+         <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+               <input class="input" type="email" placeholder="e.g. al@ace.ca" name="email" id="email">
+            </div>
+         </div>
+         
+         <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+               <input class="input" type="password" name="password" id="password">
+            </div>
+         </div>
+         <div class="control">
+            <button type="submit" class="button is-link">Login Locally</button>
+         </div>
+         <%
+                  if (message) { %>
+         <p id="msg2" class="help is-danger">
+            <%= message %>
+         </p>
+         <% } %>
+</form>
+   </div>
+</div>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+      <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+   <body>
+      <header class="">
+         <nav class="navbar is-primary" role="navigation" aria-label="main navigation" >
+            <div class="navbar-brand">
+               <a class="navbar-item" href="https://bulma.io">
+                  <img src="share-logo2.png" >
+               </a>
+               <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+               <span aria-hidden="true"></span>
+               <span aria-hidden="true"></span>
+               <span aria-hidden="true"></span>
+               </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+               <div class="navbar-start">
+                  <a class="navbar-item" href="/">
+                  <span class="icon is-medium">
+                     <i class="fas fa-home"></i>
+                  </span> Home</a>
+                  <a class="navbar-item" href="api/images/78c548ce-9202-4ab2-b276-5be38607a9cc">
+                  <span class="icon is-medium">
+                     <i class="fas fa-eye"></i>
+                  </span> Ex API Image
+                  </a>
+                  <a class="navbar-item" href='/api/users/1'>
+                  <span class="icon is-medium">
+                     <i class="fas fa-map"></i>
+                  </span> Ex API User
+                  </a>                  
+               </div>
+               <div class="navbar-end">
+                  <div class="navbar-item">
+                     <div class="buttons">
+                        <a class="button is-link" href="/login">
+                           <strong>Login</strong>
+                        </a>
+                        <a class="button is-link" href="/logout">
+                           <strong>Logout</strong>
+                        </a>                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <section class="section">
+         <%- body %>
+      </section>
+   </body>
+</html>
