@@ -75,7 +75,7 @@ class AllMovieList extends React.Component {
         this.setState( {viewID : id})
         document.getElementById('filter').style.display = "none";
         document.getElementById('sort').style.display = "none";
-        //document.getElementById('castcrewcontainer').style.display = "inline-block";
+        document.getElementById('castcrewcontainer').style.display = "inline-block";
         this.setViewFLAG()
     }
 

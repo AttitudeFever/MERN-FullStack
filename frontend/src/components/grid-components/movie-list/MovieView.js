@@ -66,7 +66,7 @@ class MovieView extends React.Component {
                 return <SingleMovieDetail key={index} poster={item.poster} title={item.title} release_date={item.release_date} ratings={item.ratings.average} 
                     id={item.id} tagline={item.tagline} imdb_id={item.imdb_id} tmdb_id={item.tmdb_id} runtime={item.runtime} revenue={item.revenue}
                     genres={item.details.genres} keywords={item.details.keywords} countries={item.production.countries} companies={item.production.companies}
-                    count={item.ratings.count} popularity={item.ratings.popularity} overview={item.details.overview}
+                    count={item.ratings.count} popularity={item.ratings.popularity} overview={item.details.overview} production={item.production}
                     addToFav={this.props.addToFav} getProduction={this.getProduction} />
             })
     }

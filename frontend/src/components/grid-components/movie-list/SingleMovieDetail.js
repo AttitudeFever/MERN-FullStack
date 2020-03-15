@@ -134,7 +134,13 @@ class Singlemoviedetail extends React.Component {
             overview = this.props.overview;
         }
     }
-    
+
+    componentDidMount(){
+        if (this.props.production !== null && this.props.production !== undefined) {
+            this.props.getProduction(this.props.production)
+        }
+    }
+
     render() {
         this.handleCleanData();
         return (
