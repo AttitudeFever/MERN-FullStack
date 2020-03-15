@@ -268,7 +268,7 @@ class Main extends React.Component {
                 <FilterContainter movieData={this.state.movieData} getFilterResult={this.getFilterResult}
                     setListAllFLAG={this.setListAllFLAG} />
                 
-                <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG} getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG} getActorID={this.getActorID}/>
+                {/* <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG} getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG} getActorID={this.getActorID}/> */}
 
                 <AllMovieList isLoading={this.state.isLoading} movieData={this.state.movieData} searchValue={this.props.searchValue}
                     searchFLAG={this.props.searchFLAG} listAllFLAG={this.props.listAllFLAG}

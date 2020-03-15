@@ -42,8 +42,8 @@ class SingleMovieBrief extends React.Component {
                         </div>
                     </div>
                     <p className="card-text">{this.props.tagline}</p>
-                    <div className="trailer-preview">
-                        <i className="fa fa-eye" aria-hidden="true" onClick={this.captureViewID}></i>
+                    <div className="trailer-preview" onClick={this.captureViewID}>
+                        <i className="fa fa-eye" aria-hidden="true" ></i>
                     </div>
                 </div>
             </div>

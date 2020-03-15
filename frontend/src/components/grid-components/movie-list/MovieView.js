@@ -1,6 +1,7 @@
 import React from 'react';
 import SingleMovieDetail from './SingleMovieDetail';
 import loader from '../../../images/loader2.gif';
+import Axios from 'axios';
 
 //This Class has only one parent: AllMovieList
 //This class has only one child: SingleMovieDetail
@@ -40,11 +41,11 @@ class MovieView extends React.Component {
     async componentDidMount(){
         this.setState( {isLoading : true } )
         try {
-            let viewAPI = "https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id="+this.props.viewID;
-            const response = await fetch(viewAPI);
-            const jsonData = await response.json();
-            this.setState( {viewData : jsonData} )
-            this.setState( {isLoading : false } )
+            Axios.get('/api/movies/' + this.props.viewID).then(resp => {
+                this.setState({ viewData: resp.data }, ()=>{
+                    this.setState({ isLoading: false })
+                })
+            })
         }
         catch (error) {
             console.error(error);
@@ -57,10 +58,17 @@ class MovieView extends React.Component {
     }
 
     //conditonal rendering if busy
-    conditionalRendering(){
-        renderThis = this.state.isLoading ? <p className="isLoading" ><img src={loader} alt="Loading" height="80" width="80"/>Loading API....</p>
-        :
-        <SingleMovieDetail viewData={this.state.viewData} addToFav={this.props.addToFav} getProduction={this.getProduction}/>
+    conditionalRendering() {
+        console.log(this.state.viewData)
+        renderThis = this.state.isLoading ? <p className="isLoading" ><img src={loader} alt="Loading" height="80" width="80" />Loading API....</p>
+            :
+            renderThis = this.state.viewData.map((item, index) => {
+                return <SingleMovieDetail key={index} poster={item.poster} title={item.title} release_date={item.release_date} ratings={item.ratings.average} 
+                    id={item.id} tagline={item.tagline} imdb_id={item.imdb_id} tmdb_id={item.tmdb_id} runtime={item.runtime} revenue={item.revenue}
+                    genres={item.details.genres} keywords={item.details.keywords} countries={item.production.countries} companies={item.production.companies}
+                    count={item.ratings.count} popularity={item.ratings.popularity} overview={item.details.overview}
+                    addToFav={this.props.addToFav} getProduction={this.getProduction} />
+            })
     }
 
     render() {

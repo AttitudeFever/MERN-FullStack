@@ -34,44 +34,22 @@ let title;
 let imdb;
 let tmdb;
 let runRav;
+let tagline;
+let ratings;
+let count;
+let popularity;
+let overview;
 
 class Singlemoviedetail extends React.Component {
     constructor() {
         super()
         this.state = {
-            showModal: false,
-            ratings:[],
-            details:[],
-            production:[],
-            title :"",
-            id:"",
-            poster:""
+            showModal: false
         }
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.addToFav = this.addToFav.bind(this);
         this.handleCleanData = this.handleCleanData.bind(this);
-    }
-
-    componentDidMount()
-    {
-        const ratings= {};
-        Object.assign(ratings,this.props.viewData.ratings);
-        this.setState({ratings:ratings})
-
-        const details = {};
-        Object.assign(details,this.props.viewData.details);
-        this.setState({details:details})
-
-        const production = {};
-        Object.assign(production, this.props.viewData.production);
-        this.setState({ production: production })
-
-        this.setState( {title: this.props.viewData.title})
-        this.setState( {id: this.props.viewData.id})
-        this.setState( {poster: this.props.viewData.poster})
-
-        this.props.getProduction(production)
     }
 
     //handle open for larger poster
@@ -91,17 +69,23 @@ class Singlemoviedetail extends React.Component {
 
     //handle if any null, undefined, "", clean Regex and display number of items with Algorithm
     handleCleanData() {
-        title = this.props.viewData.title + "(" + this.props.viewData.release_date + ")";
-        imdb = "https://www.imdb.com/title/" + this.props.viewData.imdb_id;
-        tmdb = "https://www.themoviedb.org/movie/" + this.props.viewData.tmdb_id;
-        runRav = "| Runtime: " + this.props.viewData.runtime + "mins | | Revenue: " + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(this.props.viewData.revenue) + " |";
-
-        if (this.props.viewData.poster !== undefined) {
-            imgUrl = "https://image.tmdb.org/t/p/w780/" + this.props.viewData.poster;
+        if (this.props.title !== null && this.props.title !== undefined && this.props.release_date !==null && this.props.release_date !== undefined){        
+            title = this.props.title + "(" + this.props.release_date + ")";
         }
-
-        if (this.state.details.genres !== undefined && this.state.details.genres !== null) {
-            genres = this.state.details.genres.map((item, index) => {
+        if(this.props.imdb_id !== null && this.props.imdb_id !== undefined){
+            imdb = "https://www.imdb.com/title/" + this.props.imdb_id;
+        }
+        if(this.props.tmdb_id !== null && this.props.tmdb_id !== undefined){
+            tmdb = "https://www.themoviedb.org/movie/" + this.props.tmdb_id;
+        }
+        if (this.props.runtime !==null && this.props.runtime !== undefined && this.props.revenue !==null && this.props.revenue !== undefined){
+            runRav = "| Runtime: " + this.props.runtime + "mins | | Revenue: " + new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(this.props.revenue) + " |";
+        }
+        if (this.props.poster !== null && this.props.poster !== undefined) {
+            imgUrl = "https://image.tmdb.org/t/p/w780/" + this.props.poster;
+        }
+        if (this.props.genres !== null && this.props.genres !== undefined) {
+            genres = this.props.genres.map((item, index) => {
                 let genresWithoutSpace = item.name.replace(/\s/g, '').replace(/[|&;$%@"<>()+,-]/g, "");
                 if (index > 1 && index % 3 === 0) {
                     return <span className="BMtag" key={index}>{genresWithoutSpace}<br /></span>
@@ -110,9 +94,8 @@ class Singlemoviedetail extends React.Component {
                 }
             })
         }
-
-        if (this.state.details.keywords !== undefined && this.state.details.keywords !== null) {
-            keywords = this.state.details.keywords.map((item, index) => {
+        if (this.props.keywords !== null && this.props.keywords !== undefined) {
+            keywords = this.props.keywords.map((item, index) => {
                 let keywordsWithoutSpace = item.name.replace(/\s/g, '').replace(/[|&;$%@"<>()+,-]/g, "");
                 if (index > 1 && index % 3 === 0) {
                     return <span className="BMkeyword" key={index}>{keywordsWithoutSpace}<br /></span>
@@ -123,25 +106,35 @@ class Singlemoviedetail extends React.Component {
         } else {
             keywords = <span>N/A</span>
         }
-
-        if (this.state.production.countries !== undefined && this.state.production.countries !== null) {
-            countries = this.state.production.countries.map((item, index) => {
+        if (this.props.countries !== null && this.props.countries !== undefined) {
+            countries = this.props.countries.map((item, index) => {
                 return <span key={index}><i className="far fa-flag">&nbsp;{item.name}</i><br /></span>
             })
         } else {
             countries = <span>N/A</span>
         }
-
-        if (this.state.production.companies !== undefined && this.state.production.companies !== null) {
-            companies = this.state.production.companies.map((item, index) => {
+        if (this.props.companies !== null && this.props.companies !== undefined) {
+            companies = this.props.companies.map((item, index) => {
                 return <span key={index}>{item.name}><br /></span>
             })
         } else {
             companies = <span>N/A</span>
         }
+        if(this.props.tagline !==null && this.props.tagline !== undefined){
+            tagline = this.props.tagline
+        }
+        if(this.props.ratings !==null && this.props.ratings !==undefined && 
+            this.props.count !==null && this.props.count !==undefined &&
+            this.props.popularity !==null && this.props.popularity !==undefined){
+            ratings = this.props.ratings;
+            count = this.props.count;
+            popularity = this.props.popularity;
+        }
+        if(this.props.overview !==null && this.props.overview !==undefined){
+            overview = this.props.overview;
+        }
     }
-
-
+    
     render() {
         this.handleCleanData();
         return (
@@ -162,14 +155,16 @@ class Singlemoviedetail extends React.Component {
                         </ReactModal>
 
                         <div className="BMdetails">
-                                <div className="BMtitle1">{title}<span><a href={imdb} target="_blank" rel="noopener noreferrer">IMDB</a> <a href={tmdb} target="_blank" rel="noopener noreferrer">TMDB</a></span></div>
-                                <div className="BMtitle2">{this.props.viewData.tagline}</div>
+                            <div className="BMtitle1">{title}<span><a href={imdb} target="_blank" rel="noopener noreferrer">IMDB</a> <a href={tmdb} target="_blank" rel="noopener noreferrer">TMDB</a></span></div>
+                            <div className="BMtitle2">
+                                {tagline}
+                            </div>
                                 <div className="BMrating">
                                     <span>
-                                    < Rater rating={this.state.ratings.average} total={10} interactive={false} />
+                                    < Rater rating={ratings} total={10} interactive={false} />
                                         /10
                                         <br/>
-                                <span className="popularity">Count: {this.state.ratings.count} | Popularity: {this.state.ratings.popularity}</span>
+                                <span className="popularity">Count: {count} | Popularity: {popularity}</span>
                                     </span>
                                 </div>
                                 <span className="BMextra">{runRav}</span>
@@ -187,7 +182,7 @@ class Singlemoviedetail extends React.Component {
                             </div>
                             <div className="BMcolumn2">
                                 <span>Overview:
-                                    <p>{this.state.details.overview}</p>
+                                    <p>{overview}</p>
                                 </span>
                                 <p>Keywords:&nbsp;
                                     {keywords}

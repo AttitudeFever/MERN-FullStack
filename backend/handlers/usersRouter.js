@@ -16,7 +16,7 @@ router.get('/users/:id', helper.ensureAuthenticated, (req, resp) => {
 });
 
 
-router.get('/add/favorite/:id', helper.ensureAuthenticated, (req, resp) =>{
+router.get('/add/favorite/:userid', helper.ensureAuthenticated, (req, resp) =>{
     // use mongoose to insert favorite item through MongoDB
     // const id = req.body.id
     // const title = req.body.title
