@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import About from './aboutus/About';
 import logo from '../images/logo2.png';
+import {Button} from 'antd';
 
 //Parent of this class is App
 //This class has only one child component: About
@@ -46,6 +47,7 @@ class Home extends React.Component {
     render() {
         return (
             <div id="myHome">
+            
                 <div className="hero-image"></div>
                 <div className="homeMain">
                     <h1 className="heading">HM'S Movie Collection
@@ -53,7 +55,7 @@ class Home extends React.Component {
                     </h1>
                     <div className="buttonPackHome" >
                         <Link to='/main'>
-                            <button className="AllHome" onClick={this.setListAllFLAG}>List All Movies <i className="fa fa-film"></i></button>
+                            <Button className="AllHome" onClick={this.setListAllFLAG}>List All Movies <i className="fa fa-film"></i></Button>
                         </Link>
                         <About />
                     </div>

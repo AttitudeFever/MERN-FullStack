@@ -2,6 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom';
 import Home from './components/Home'
 import Main from './components/Main'
+import Axios from 'axios';
 
 //This class is responsile to handle Search and diplay FLAGS
 //Has 2 child compoments Home and Main
@@ -15,7 +16,8 @@ class App extends React.Component {
             listAllFLAG:false,
             filterFLAG:false,
             viewFLAG:false,
-            ActorProfileFLAG:false
+            ActorProfileFLAG:false,
+            currentUserID:0
         }
         this.getSearchValue = this.getSearchValue.bind(this);
         this.getFLAGS = this.getFLAGS.bind(this);
@@ -30,6 +32,12 @@ class App extends React.Component {
     getFLAGS(searchFLAG, listAllFLAG, filterFLAG, viewFLAG, ActorProfileFLAG){
         this.setState( {searchFLAG : searchFLAG, listAllFLAG : listAllFLAG, filterFLAG : filterFLAG, viewFLAG: viewFLAG, ActorProfileFLAG: ActorProfileFLAG} );
     }
+
+    componentDidMount(){
+        Axios.get('/api/userID').then(resp=>{
+            this.setState({currentUserID: resp.data})
+        })
+    }
     
     //Rounting is set for SPA
     render(){
@@ -41,7 +49,8 @@ class App extends React.Component {
                 <Route path="/main" exact render={ (props) => <Main searchValue={this.state.searchValue} 
                     searchFLAG={this.state.searchFLAG} listAllFLAG={this.state.listAllFLAG} 
                     filterFLAG={this.state.filterFLAG} viewFLAG={this.state.viewFLAG} 
-                    ActorProfileFLAG={this.state.ActorProfileFLAG }getFLAGS={this.getFLAGS} />}/>
+                    ActorProfileFLAG={this.state.ActorProfileFLAG }getFLAGS={this.getFLAGS} 
+                    currentUserID={this.state.currentUserID}/>}/>
             </main>
         )
     }

@@ -22,7 +22,6 @@ class MovieView extends React.Component {
 
     //Close request for SingleMovieDetail
     handleCloseMovieView(){
-        document.getElementById('filter').style.display = "inline-block";
         document.getElementById('sort').style.display = "inline-block";
         document.getElementById('castcrewcontainer').style.display = "none";
         this.setListAllFLAG();
@@ -59,7 +58,7 @@ class MovieView extends React.Component {
 
     //conditonal rendering if busy
     conditionalRendering() {
-        console.log(this.state.viewData)
+        
         renderThis = this.state.isLoading ? <p className="isLoading" ><img src={loader} alt="Loading" height="80" width="80" />Loading API....</p>
             :
             renderThis = this.state.viewData.map((item, index) => {
@@ -69,6 +68,7 @@ class MovieView extends React.Component {
                     count={item.ratings.count} popularity={item.ratings.popularity} overview={item.details.overview} production={item.production}
                     addToFav={this.props.addToFav} getProduction={this.getProduction} />
             })
+            document.getElementById('castcrewcontainer').style.display = "inline-block";
     }
 
     render() {

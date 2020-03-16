@@ -73,7 +73,6 @@ class AllMovieList extends React.Component {
     //capture id of that particular movie, request coming from child: MovieView
     getViewID(id){
         this.setState( {viewID : id})
-        document.getElementById('filter').style.display = "none";
         document.getElementById('sort').style.display = "none";
         document.getElementById('castcrewcontainer').style.display = "inline-block";
         this.setViewFLAG()

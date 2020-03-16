@@ -26,7 +26,7 @@ class FilterContainer extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClear = this.handleClear.bind(this);
-        this.filterPopup = this.filterPopup.bind(this);
+        // this.filterPopup = this.filterPopup.bind(this);
     }
 
 //handle change on Form Elements
@@ -135,25 +135,25 @@ class FilterContainer extends React.Component {
     }
 
     //handle request on expand and shrink filter area
-    filterPopup(){
-        const btnFilter = document.querySelector('#btnFilter');
-        const filter =document.querySelector('#filter');
-        const form =document.querySelector('#form');
+    // filterPopup(){
+    //     const btnFilter = document.querySelector('#btnFilter');
+    //     const filter =document.querySelector('#filter');
+    //     const form =document.querySelector('#form');
 
-        if(btnFilter.textContent === "Filter") {
-            btnFilter.innerHTML = "Close<i class='fa fa-close'></i>";
-            filter.style.width = 410+"px";
-            filter.style.height = 550+"px";
-            form.style.opacity =1;
-        }
+    //     if(btnFilter.textContent === "Filter") {
+    //         btnFilter.innerHTML = "Close<i class='fa fa-close'></i>";
+    //         filter.style.width = 410+"px";
+    //         filter.style.height = 550+"px";
+    //         form.style.opacity =1;
+    //     }
 
-        else if(btnFilter.textContent === "Close"){
-            btnFilter.innerHTML = "Filter<i class='fa fa-filter'></i>";
-            filter.style.width = 100+"px";
-            filter.style.height = 45+"px";
-            form.style.opacity =0;
-        }
-    }
+    //     else if(btnFilter.textContent === "Close"){
+    //         btnFilter.innerHTML = "Filter<i class='fa fa-filter'></i>";
+    //         filter.style.width = 100+"px";
+    //         filter.style.height = 45+"px";
+    //         form.style.opacity =0;
+    //     }
+    // }
 
     render() {
         return (
@@ -164,7 +164,7 @@ class FilterContainer extends React.Component {
             betweenRatingRadio={this.state.betweenRatingRadio}
             betweenStartSlider={this.state.betweenStartSlider}
             betweenEndSlider={this.state.betweenEndSlider} handleClear={this.handleClear}
-            filterPopup={this.filterPopup}/>
+            /*filterPopup={this.filterPopup}*/ />
         )
     }
 }

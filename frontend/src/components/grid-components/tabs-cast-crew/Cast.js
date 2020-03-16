@@ -16,6 +16,7 @@ class Cast extends React.Component {
     ActorProfileRequest(){
         this.setActorProfileFLAG()
         this.props.getActorID(this.props.id)
+        document.getElementById('castcrewcontainer').style.display = "none";
     }
 
    //if actor profile view is requested, send FLAG to parent

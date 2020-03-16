@@ -4,6 +4,10 @@ const helper = require('./helpers.js');
 
 const router = express.Router();
 
+router.get('/userID', helper.ensureAuthenticated, (req, resp) =>{
+    resp.json(req.user.id)
+})
+
 // handle GET requests for [domain]/api/users/1/
 router.get('/users/:id', helper.ensureAuthenticated, (req, resp) => {
     UserModel.find({ id: req.params.id }, {id:1, details:1, picture:1, membership:1, email:1, favorites:1}, (err, data) => {

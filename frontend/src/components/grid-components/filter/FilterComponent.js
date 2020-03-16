@@ -6,7 +6,7 @@ import React from 'react'
 function FilterComponent(props) {
     return (
         <div className="filter" id="filter">
-            <button id="btnFilter" onClick={props.filterPopup}>Filter<i className="fa fa-filter"></i></button>
+            {/* <button id="btnFilter" onClick={props.filterPopup}>Filter<i className="fa fa-filter"></i></button> */}
             
             <form id="form">
                 <input type="radio"
@@ -15,7 +15,7 @@ function FilterComponent(props) {
                     value="betweenTitleRadioValue"
                     checked={props.betweenTitleRadio}
                     onChange={props.handleChange}
-                /> <label>Search by Title</label>
+                /> <label>Filter by Title</label>
                 <br/>
                 <input type="text" placeholder="Key Word"
                     name="titleSearch"
@@ -31,14 +31,14 @@ function FilterComponent(props) {
                         value="betweenYear"
                         checked={props.betweenYearRadio}
                         onChange={props.handleChange}
-                    /> <label>Search by Year</label>
+                    /> <label>Filter by Year</label>
                     <br/>
                     <label>Between:</label> &nbsp;
                         <input type="number" min="1900" max="2020" id="betweenStartingYearSearch" name="betweenStartingYearSearch" onChange={props.handleChange} value={props.betweenStartYear} disabled />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<label>And</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <br/>                    
+                    <label>And</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
                         <input type="number" min="1900" max="2020" id="betweenEndingYearSearch" name="betweenEndingYearSearch" onChange={props.handleChange} value={props.betweenEndYear} disabled />
                 </div>
-                <br />
                 <div className="ratingBox">
                     <input type="radio"
                         className="option-input radio"
@@ -46,12 +46,12 @@ function FilterComponent(props) {
                         value="betweenRatings"
                         checked={props.betweenRatingRadio}
                         onChange={props.handleChange}
-                    /> <label>Seacrh By Ratings</label>
+                    /> <label>Filter By Ratings</label>
                     <br/>
-                    <label>Between: {props.betweenStartSlider} And {props.betweenEndSlider}</label>&nbsp;
-                        <input type="range" min="1" max="10" name="betweenStartRating" value={props.betweenStartSlider} onChange={props.handleChange} className="slider" id="betweenStartRating" disabled></input>
-                    &nbsp;&nbsp;
-                        <input type="range" min="1" max="10" name="betweenEndRating" value={props.betweenEndSlider} onChange={props.handleChange} className="slider" id="betweenEndRating" disabled></input>
+                    <label>Between: {props.betweenStartSlider}&nbsp;<input type="range" min="1" max="10" name="betweenStartRating" value={props.betweenStartSlider} onChange={props.handleChange} className="slider" id="betweenStartRating" disabled></input></label>
+                    <br/>
+                    <label>And: {props.betweenEndSlider}&nbsp;<input type="range" min="1" max="10" name="betweenEndRating" value={props.betweenEndSlider} onChange={props.handleChange} className="slider" id="betweenEndRating" disabled></input></label>
+                    <br/>
                 </div>
                 <div className="actionButtons">
                     <button className="search" onClick={props.handleSubmit}>Search</button>

@@ -4,6 +4,7 @@ import Person from './Person';
 import imgHamid from '../../images/hamid.png';
 import imgMark from '../../images/mark.jpg';
 import bgImg from '../../images/bgAboutus.jpg';
+import { Button  } from 'antd';
 
 //style for modal popup
 const customStyles = {
@@ -55,7 +56,7 @@ class About extends React.Component {
     render() {
         return (
             <div className="aboutUs">
-                <button className="aboutusHome" onClick={this.handleOpenModal}>About Us <i className="fa fa-group"></i></button>
+                <Button className="aboutusHome" onClick={this.handleOpenModal}>About Us <i className="fa fa-group"></i></Button>
                 <ReactModal     //Reusable React Modal to create popup effect handling and style is defined on the opening tag
                     isOpen={this.state.showModal}
                     onRequestClose={this.closeModal}
