@@ -1,5 +1,5 @@
 import React from 'react'
-import Axios from 'axios'
+//import Axios from 'axios'
 
 //This Class has only one parent: AllMovieList
 //this is responsible to create Movie Brief Cards
@@ -14,19 +14,17 @@ class SingleMovieBrief extends React.Component {
 
     //Pass to parent, Add to Fav request
     addToFav() {
-        //this.props.addToFav(this.props.title, this.props.poster, this.props.id);
-        Axios.post('/api/add/favorite/1').then(resp=>{
-            
-            const id = 568
-            const title = "req.body.title"
-            const poster = ".jpg"
+        this.props.addToFav(this.props.title, this.props.poster, this.props.id);
+        // const id = 568
+        // const title = "req.body.title"
+        // const poster = ".jpg"
 
-            var itemToAdd = {id: id, title: title, poster: poster}
-            resp.data = itemToAdd;
-        })
+        // var itemToAdd = {id: id, title: title, poster: poster}
+
+        // Axios.post('/api/add/favorite/1', itemToAdd);
     }
 
-    //Pss to parent, movie id upon view request
+    //Pass to parent, movie id upon view request
     captureViewID() {
         this.props.getViewID(this.props.id)
     }

@@ -19,18 +19,17 @@ router.get('/users/:id', helper.ensureAuthenticated, (req, resp) => {
     });
 });
 
-
+// handle POST requests for [domain]/api/favorite/1/ 
 router.post('/add/favorite/:userid', helper.ensureAuthenticated, (req, resp) =>{
-    // use mongoose to insert favorite item through MongoDB
+    
+    //req.body is the dynamic data coming from front end
     const id = req.body.id
     const title = req.body.title
     const poster = req.body.poster
 
     var itemToAdd = {id: id, title: title, poster: poster}
 
-
-    //var itemToAdd = {"id": "123", "title": "some Title", "poster": "/someposter.jpg" };
-
+    // use mongoose to insert favorite item through MongoDB
     UserModel.findOneAndUpdate({id: req.params.userid}, { $push: { favorites: itemToAdd } },  
         function (error, success) {
         if (error) {

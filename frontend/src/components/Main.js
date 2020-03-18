@@ -28,7 +28,6 @@ const { SubMenu } = Menu;
 //This class has 5 child components: Header, FavList, FilterContainer, AllMovieList and CastCrewContainer
 
 const LOCAL_STORAGE_KEY = 'movieData';
-const LOCAL_STORAGE_KEY_2 = 'favList';
 let FN;
 class Main extends React.Component {
     constructor(){
@@ -44,7 +43,6 @@ class Main extends React.Component {
             userInfo:[],
         }
         this.storeMainAPILocally = this.storeMainAPILocally.bind(this);
-        this.storeFavListLocally = this.storeFavListLocally.bind(this);
         this.intialSortBytitle = this.intialSortBytitle.bind(this);
         this.sortByYear = this.sortByYear.bind(this);
         this.sortByTitle = this.sortByTitle.bind(this);
@@ -58,6 +56,7 @@ class Main extends React.Component {
         this.getProduction=this.getProduction.bind(this);
         this.getActorID = this.getActorID.bind(this);
         this.getUserInfo = this.getUserInfo.bind(this);
+        this.getUserFavs = this.getUserFavs.bind(this);
         this.handleSignOut = this.handleSignOut.bind(this);
     }
 
@@ -69,18 +68,28 @@ class Main extends React.Component {
     componentDidMount(){
         this.setState( {isLoading : true } )
         this.storeMainAPILocally();
-        this.storeFavListLocally();
         this.getUserInfo();
+        this.getUserFavs();
     }
 
     getUserInfo(){
+        console.log("iam reading")
         Axios.get('/api/users/'+this.props.currentUserID).then(resp=>{
-            this.setState({userInfo:resp.data})
+            this.setState({userInfo:resp.data}, ()=>{
+                this.state.userInfo.map( item =>{
+                    this.setState({favList: item.favorites})
+                })
+            })
         })
     }
-    //when refresh button is hit
-    componentDidUpdate(){
-        localStorage.setItem(LOCAL_STORAGE_KEY_2, JSON.stringify(this.state.favList));
+
+    getUserFavs(){
+        // Axios.get('/api/users/'+this.props.currentUserID).then(resp=>{
+        //     console.log(resp.data)
+        //     this.setState({favList:resp.data.favorites})
+
+        // })
+        
     }
 
     //fetch api and and use local storage 
@@ -103,19 +112,6 @@ class Main extends React.Component {
             catch (error) {
                 console.error(error);
             }
-        }
-    }
-
-    //store favlist into local storage
-    storeFavListLocally() {
-        let storedItemList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_2));
-
-        if (storedItemList) {
-
-            this.setState({ favList: storedItemList })
-
-        } else {
-            localStorage.setItem(LOCAL_STORAGE_KEY_2, JSON.stringify(this.state.favList));
         }
     }
 
@@ -215,10 +211,14 @@ class Main extends React.Component {
     //handle add to fav request
     //request coming from child: AllMovieList
     addToFav(title, poster, id) {
+        var itemToAdd = { id: id, title: title, poster: poster }
         const copyFavs = cloneDeep(this.state.favList);
 
         if (this.state.favList.length === 0) {
             copyFavs.push({ id: id, title: title, poster: poster })
+            //adding item to mongoDB
+            
+            Axios.post('/api/add/favorite/'+this.props.currentUserID, itemToAdd);
         }
         else {
             const found = copyFavs.some(item => {
@@ -227,6 +227,9 @@ class Main extends React.Component {
 
             if (!found) {
                 copyFavs.push({ id: id, title: title, poster: poster })
+
+                //adding item to mongoDB
+                Axios.post('/api/add/favorite/'+this.props.currentUserID, itemToAdd);
             }
         }
 
@@ -296,6 +299,7 @@ class Main extends React.Component {
     }
 
     render() {
+        console.log(this.state.favList)
         {FN = this.state.userInfo.map(item => item.details.firstname)}
         return (
             <div className="mainDiv">

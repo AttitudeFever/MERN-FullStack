@@ -1,6 +1,7 @@
 import React from 'react'
 import SingleFav from './SingleFav';
 
+let rednerThis;
 //This class has only one parent: Main
 //This class has only one child: SingleFav
 class FavList extends React.Component {
@@ -35,9 +36,7 @@ class FavList extends React.Component {
                 <button id="btnFavorite" onClick={this.favPopup}>Favorites<i className="fa fa-heart"></i></button>
                 {
                     this.props.favList.map((item, index) => {
-                        return <SingleFav key={index} id={item.id} title={item.title} poster={item.poster} deleteFavItem={this.props.deleteFavItem} />
-                            
-                    })                    
+                    return <SingleFav key={index} id={item.id} title={item.title} poster={item.poster} deleteFavItem={this.props.deleteFavItem} /> })
                 }
             </div>
         )
