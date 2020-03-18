@@ -15,13 +15,6 @@ class SingleMovieBrief extends React.Component {
     //Pass to parent, Add to Fav request
     addToFav() {
         this.props.addToFav(this.props.title, this.props.poster, this.props.id);
-        // const id = 568
-        // const title = "req.body.title"
-        // const poster = ".jpg"
-
-        // var itemToAdd = {id: id, title: title, poster: poster}
-
-        // Axios.post('/api/add/favorite/1', itemToAdd);
     }
 
     //Pass to parent, movie id upon view request

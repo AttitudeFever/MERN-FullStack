@@ -817,3 +817,138 @@ input[type=range]:focus::-ms-fill-upper {
       [data-theme="dark"] .fav-badge {
         background: rgba(255,255,255,.12);
       }
+
+      /* /////////////////////Favorites////////////////////// */
+
+      .favs {
+        /* height: 150px; */
+        transition: height 2s;
+        width: 120px;
+        overflow: hidden;
+        height: 52px;
+        font-family: 'Fredericka the Great', cursive;
+        padding: 0;
+        border: 1px solid;
+        box-shadow: inset 0 0 20px rgba(123, 30, 177, 0.5), 0 0 20px rgba(17, 228, 228, 0.2);
+        outline-color: rgba(255, 255, 255, 0);
+        outline-offset: 15px;
+        /* overflow-x: scroll; */
+        position: relative;
+      }
+      .favs {
+        display: grid;
+        /* grid-template-columns: repeat(15, 1fr); */
+        grid-auto-flow: column;
+        padding-top: 0px;
+      }
+
+      #btnFavorite{
+        width: 100px;
+        height: 40px;
+        float: right;
+        margin-right: 10px;
+        margin-top: 5px;
+        padding: 5px;
+        border: 0 solid;
+        text-shadow: none;
+        transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+        border-radius: 20px;
+        margin-left: 10px;
+      }
+      
+      #btnFavorite:hover {
+        border: 1px solid;
+        box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
+        outline-color: rgba(255, 255, 255, 0);
+        outline-offset: 15px;
+        text-shadow: 1px 1px 2px #153b4b; 
+      }
+
+      /* ///////////////////////////////////////////////////////////////Single Fav/////////////////////////////////// */
+  .singleFav{
+    position: relative;
+    top:5px;
+    border-radius: 15pt;
+    border-style: solid;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    display: inline-block;
+    margin-top: -60px;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    padding: 15px 15px 15px 25px;
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
+    outline-color: rgba(255, 255, 255, 0);
+    opacity: 1;
+  }
+
+  .fadeb-enter{
+    opacity: 0.00;
+  }
+  .fadeb-enter.fadeb-enter-active{
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+
+  .fadeb-leave{
+    opacity: 1;
+  }
+  .fadeb-leave.fadeb-leave-active{
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+  }
+
+
+.fade-appear{
+  opacity: 0.00;
+}
+.fade-appear.fade-appear-active{
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.fade-enter {
+  opacity: 0.0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0.00;
+  transition: opacity 300ms ease-in;
+}
+
+
+
+  #btnDelete{
+    background-color: white;
+    color: #ff3d49;
+    top: -20px;
+    position: absolute;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 40%;
+    
+    font-size: 20px;
+    text-align: center;
+    
+  }
+
+  #btnDelete:hover {
+    background-color: #ff3d49;
+    color: white;
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 15px;
+    text-shadow: 1px 1px 2px #153b4b; 
+  }

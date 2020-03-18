@@ -56,7 +56,6 @@ class Main extends React.Component {
         this.getProduction=this.getProduction.bind(this);
         this.getActorID = this.getActorID.bind(this);
         this.getUserInfo = this.getUserInfo.bind(this);
-        this.getUserFavs = this.getUserFavs.bind(this);
         this.handleSignOut = this.handleSignOut.bind(this);
     }
 
@@ -69,27 +68,18 @@ class Main extends React.Component {
         this.setState( {isLoading : true } )
         this.storeMainAPILocally();
         this.getUserInfo();
-        this.getUserFavs();
     }
 
+    //get user info and populate fav list from db -- nested call backs
     getUserInfo(){
         console.log("iam reading")
         Axios.get('/api/users/'+this.props.currentUserID).then(resp=>{
-            this.setState({userInfo:resp.data}, ()=>{
+            this.setState({userInfo: resp.data}, ()=>{
                 this.state.userInfo.map( item =>{
                     this.setState({favList: item.favorites})
                 })
             })
         })
-    }
-
-    getUserFavs(){
-        // Axios.get('/api/users/'+this.props.currentUserID).then(resp=>{
-        //     console.log(resp.data)
-        //     this.setState({favList:resp.data.favorites})
-
-        // })
-        
     }
 
     //fetch api and and use local storage 
@@ -208,7 +198,8 @@ class Main extends React.Component {
         this.forceUpdate()
     }
 
-    //handle add to fav request
+    //handle add to fav request in local state and db 
+    //check if not dulicate item request
     //request coming from child: AllMovieList
     addToFav(title, poster, id) {
         var itemToAdd = { id: id, title: title, poster: poster }
@@ -216,8 +207,8 @@ class Main extends React.Component {
 
         if (this.state.favList.length === 0) {
             copyFavs.push({ id: id, title: title, poster: poster })
+
             //adding item to mongoDB
-            
             Axios.post('/api/add/favorite/'+this.props.currentUserID, itemToAdd);
         }
         else {
