@@ -797,3 +797,23 @@ input[type=range]:focus::-ms-fill-upper {
         text-align: center;
         font-weight: bold;
       }
+
+      /* //////////////////////////////////////////favorites//////////////////// */
+      .ant-badge:not(.ant-badge-not-a-wrapper) {
+        margin-right: 20px;
+      }
+      .ant-badge.ant-badge-rtl:not(.ant-badge-not-a-wrapper) {
+        margin-right: 0;
+        margin-left: 20px;
+      }
+      .fav-badge {
+        width: 42px;
+        height: 42px;
+        border-radius: 2px;
+        background: #eee;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      [data-theme="dark"] .fav-badge {
+        background: rgba(255,255,255,.12);
+      }

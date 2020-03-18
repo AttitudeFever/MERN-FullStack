@@ -10,9 +10,8 @@ import UserInfo from './grid-components/UserInfo';
 import * as cloneDeep from 'lodash/cloneDeep';
 import CastCrewContainer from './grid-components/tabs-cast-crew/CastCrewContainer';
 import Axios from 'axios';
-import { Layout, Menu, Breadcrumb, Button  } from 'antd';
+import { Layout, Menu, Breadcrumb, Button, Badge  } from 'antd';
 import {
-    DesktopOutlined,
     LogoutOutlined,
     FilterOutlined,
     UserOutlined,
@@ -42,7 +41,7 @@ class Main extends React.Component {
             filterResult:[],
             production : [],
             ActorID:0,
-            userInfo:[]
+            userInfo:[],
         }
         this.storeMainAPILocally = this.storeMainAPILocally.bind(this);
         this.storeFavListLocally = this.storeFavListLocally.bind(this);
@@ -59,6 +58,7 @@ class Main extends React.Component {
         this.getProduction=this.getProduction.bind(this);
         this.getActorID = this.getActorID.bind(this);
         this.getUserInfo = this.getUserInfo.bind(this);
+        this.handleSignOut = this.handleSignOut.bind(this);
     }
 
     onCollapse = collapsed => {
@@ -289,6 +289,12 @@ class Main extends React.Component {
         this.setState( {ActorID : ActorID} )
     }
 
+    handleSignOut(){
+        Axios.get('/logout').then(resp=>{
+            window.location = "http://localhost:8080/login"
+        })
+    }
+
     render() {
         {FN = this.state.userInfo.map(item => item.details.firstname)}
         return (
@@ -378,8 +384,8 @@ class Main extends React.Component {
                                 </Menu.Item>
                             </SubMenu>
                             <Menu.Item key="9">
-                                <LogoutOutlined/>
-                                <Button>Sign Out</Button>
+                                <LogoutOutlined onClick={this.handleSignOut}/>
+                                <Button onClick={this.handleSignOut}>Sign Out</Button>
                             </Menu.Item>
                         </Menu>
                     </Sider>
@@ -396,8 +402,14 @@ class Main extends React.Component {
                         </Header>
                         <Content style={{ margin: '0 16px' }}>
                             <Breadcrumb style={{ margin: '16px 0' }}>
-                                <Breadcrumb.Item>User</Breadcrumb.Item>
-                                <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                                {/* <div>
+                                    <Badge count={5}>
+                                        <div className="fav-badge" />
+                                    </Badge>
+                                </div> */}
+                                <Breadcrumb.Item>
+                                    <FavList favList={this.state.favList} deleteFavItem={this.deleteFavItem} />
+                                </Breadcrumb.Item>
                             </Breadcrumb>
                             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                                 
