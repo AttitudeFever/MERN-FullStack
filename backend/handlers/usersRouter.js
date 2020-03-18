@@ -20,15 +20,18 @@ router.get('/users/:id', helper.ensureAuthenticated, (req, resp) => {
 });
 
 
-router.get('/add/favorite/:userid', helper.ensureAuthenticated, (req, resp) =>{
+router.post('/add/favorite/:userid', helper.ensureAuthenticated, (req, resp) =>{
     // use mongoose to insert favorite item through MongoDB
-    // const id = req.body.id
-    // const title = req.body.title
-    // const poster = req.body.poster
+    const id = req.body.id
+    const title = req.body.title
+    const poster = req.body.poster
 
-    var itemToAdd = {"id": "123", "title": "some Title", "poster": "/someposter.jpg" };
+    var itemToAdd = {id: id, title: title, poster: poster}
 
-    UserModel.findOneAndUpdate({id: req.params.id}, { $push: { favorites: itemToAdd } },  
+
+    //var itemToAdd = {"id": "123", "title": "some Title", "poster": "/someposter.jpg" };
+
+    UserModel.findOneAndUpdate({id: req.params.userid}, { $push: { favorites: itemToAdd } },  
         function (error, success) {
         if (error) {
             resp.status(400).json('Error: ' + err);
