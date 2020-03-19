@@ -5,9 +5,7 @@ import React from 'react'
 //This is responsible to create a Controlled Form 
 function FilterComponent(props) {
     return (
-        <div className="filter" id="filter">
-            {/* <button id="btnFilter" onClick={props.filterPopup}>Filter<i className="fa fa-filter"></i></button> */}
-            
+        <div className="filter" id="filter">            
             <form id="form">
                 <input type="radio"
                     className="option-input radio"

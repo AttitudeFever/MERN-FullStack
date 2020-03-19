@@ -230,6 +230,9 @@ class Main extends React.Component {
         })
 
         this.setState({ favList: remainigItems })
+        //deleteing fav item from mongoDB
+        var itemToDel = { id: id }
+        Axios.post('/api/delete/favorite/' + this.props.currentUserID, itemToDel);
     }
 
     //geting filter results from filtercontainter
@@ -292,11 +295,11 @@ class Main extends React.Component {
                         <Link to='/'>
                             <img className="logoOnMain" src={logo} alt="HM's Logo" />
                         </Link>
-                        <Menu defaultSelectedKeys={['1']} mode="inline">
+                        <Menu className="Menu"defaultSelectedKeys={['1']} mode="inline">
                             <SubMenu
                                 key="sub2"
                                 title={
-                                    <span>
+                                    <span className="filterOutlined">
                                         <FilterOutlined />
                                         <span>Filter</span>
                                     </span>
@@ -314,7 +317,7 @@ class Main extends React.Component {
                             <SubMenu
                                 key="sub1"
                                 title={
-                                    <span>
+                                    <span className="filterOutlined" >
                                         <UserOutlined />
                                         <span>My Account</span>
                                     </span>
@@ -332,8 +335,8 @@ class Main extends React.Component {
                                 </Menu.Item>
                             </SubMenu>
                             <Menu.Item key="9">
-                                <LogoutOutlined onClick={this.handleSignOut} />
-                                <Button onClick={this.handleSignOut}>Sign Out</Button>
+                                <LogoutOutlined onClick={this.handleSignOut} className="filterOutlined"/>
+                                <Button onClick={this.handleSignOut} className="signout">Sign Out</Button>
                             </Menu.Item>
                         </Menu>
                     </Sider>
@@ -369,7 +372,9 @@ class Main extends React.Component {
                                     viewFLAG={this.props.viewFLAG} ActorProfileFLAG={this.props.ActorProfileFLAG}
                                     getFLAGS={this.props.getFLAGS} getProduction={this.getProduction}
                                     ActorID={this.state.ActorID} />
-                                <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG} getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG} getActorID={this.getActorID} />
+                                <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG} 
+                                        getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG} 
+                                        getActorID={this.getActorID}/>
                             </div>
                         </Content>
                         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>

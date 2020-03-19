@@ -133,28 +133,7 @@ class FilterContainer extends React.Component {
         betweenStartRating.disabled=true;
         betweenEndRating.disabled=true;
     }
-
-    //handle request on expand and shrink filter area
-    // filterPopup(){
-    //     const btnFilter = document.querySelector('#btnFilter');
-    //     const filter =document.querySelector('#filter');
-    //     const form =document.querySelector('#form');
-
-    //     if(btnFilter.textContent === "Filter") {
-    //         btnFilter.innerHTML = "Close<i class='fa fa-close'></i>";
-    //         filter.style.width = 410+"px";
-    //         filter.style.height = 550+"px";
-    //         form.style.opacity =1;
-    //     }
-
-    //     else if(btnFilter.textContent === "Close"){
-    //         btnFilter.innerHTML = "Filter<i class='fa fa-filter'></i>";
-    //         filter.style.width = 100+"px";
-    //         filter.style.height = 45+"px";
-    //         form.style.opacity =0;
-    //     }
-    // }
-
+    
     render() {
         return (
             <FilterComponent titleSearch={this.state.titleSearch} handleChange={this.handleChange} 
@@ -163,8 +142,7 @@ class FilterContainer extends React.Component {
             betweenStartYear={this.state.betweenStartYear} betweenEndYear={this.state.betweenEndYear}
             betweenRatingRadio={this.state.betweenRatingRadio}
             betweenStartSlider={this.state.betweenStartSlider}
-            betweenEndSlider={this.state.betweenEndSlider} handleClear={this.handleClear}
-            /*filterPopup={this.filterPopup}*/ />
+            betweenEndSlider={this.state.betweenEndSlider} handleClear={this.handleClear}/>
         )
     }
 }

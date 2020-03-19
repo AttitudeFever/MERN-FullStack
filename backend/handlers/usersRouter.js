@@ -40,22 +40,21 @@ router.post('/add/favorite/:userid', helper.ensureAuthenticated, (req, resp) =>{
     });
 })
 
-// router.get('/delete/favorite/:id', helper.ensureAuthenticated, (req, resp) =>{
-//     // use mongoose to insert favorite item through MongoDB
-//     // const id = req.body.id
-//     // const title = req.body.title
-//     // const poster = req.body.poster
+router.post('/delete/favorite/:userid', helper.ensureAuthenticated, (req, resp) =>{
+    
+    //req.body is the dynamic data coming from front end
+    const itemToDel = req.body.id;
 
-//     var itemToDelete = {"id": "123", "title": "some Title", "poster": "/someposter.jpg" };
+    //you can specify favorite by id, and title. {id:, title:}
+    UserModel.findOneAndUpdate({id: req.params.userid}, { $pull: { favorites: { id: itemToDel} } },{ multi: true } ,
+        function (error, success) {
+        if (error) {
+            resp.status(400).json('Error: ' + err);
+        } else {
+            resp.json('Favorite Item Deleted !');
+        }
+    });
+})
 
-//     UserModel.findOneAndRemove({id: req.params.id}, { $delete: { favorites: itemToDelete } },  
-//         function (error, success) {
-//         if (error) {
-//             resp.status(400).json('Error: ' + err);
-//         } else {
-//             resp.json('Favorite Item Deleted !');
-//         }
-//     });
-// })
 
 module.exports = router;
