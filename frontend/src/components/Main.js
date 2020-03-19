@@ -1,5 +1,5 @@
 import React from 'react'
-import CustomHeader from './grid-components/CustomHeader';
+//import CustomHeader from './grid-components/CustomHeader';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo2.png';
 import About from './aboutus/About';
@@ -10,13 +10,8 @@ import UserInfo from './grid-components/UserInfo';
 import * as cloneDeep from 'lodash/cloneDeep';
 import CastCrewContainer from './grid-components/tabs-cast-crew/CastCrewContainer';
 import Axios from 'axios';
-import { Layout, Menu, Breadcrumb, Button, Badge  } from 'antd';
-import {
-    LogoutOutlined,
-    FilterOutlined,
-    UserOutlined,
-  } from '@ant-design/icons';
-// import  '../static/antd.css';
+import { Layout, Menu, Breadcrumb, Button, Badge } from 'antd';
+import { LogoutOutlined, FilterOutlined, UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../static/responsive.css';
 
@@ -30,30 +25,30 @@ const { SubMenu } = Menu;
 const LOCAL_STORAGE_KEY = 'movieData';
 let FN;
 class Main extends React.Component {
-    constructor(){
+    constructor() {
         super()
-        this.state={
+        this.state = {
             collapsed: false,
-            isLoading:false,
-            movieData : [],
-            favList:[],
-            filterResult:[],
-            production : [],
-            ActorID:0,
-            userInfo:[],
+            isLoading: false,
+            movieData: [],
+            favList: [],
+            filterResult: [],
+            production: [],
+            ActorID: 0,
+            userInfo: [],
         }
         this.storeMainAPILocally = this.storeMainAPILocally.bind(this);
         this.intialSortBytitle = this.intialSortBytitle.bind(this);
         this.sortByYear = this.sortByYear.bind(this);
         this.sortByTitle = this.sortByTitle.bind(this);
         this.sortByRatings = this.sortByRatings.bind(this);
-        this.addToFav= this.addToFav.bind(this);
-        this.deleteFavItem=this.deleteFavItem.bind(this)
+        this.addToFav = this.addToFav.bind(this);
+        this.deleteFavItem = this.deleteFavItem.bind(this)
         this.getFilterResult = this.getFilterResult.bind(this);
         this.setFilterFLAG = this.setFilterFLAG.bind(this);
         this.setListAllFLAG = this.setListAllFLAG.bind(this);
         this.doSort = this.doSort.bind(this);
-        this.getProduction=this.getProduction.bind(this);
+        this.getProduction = this.getProduction.bind(this);
         this.getActorID = this.getActorID.bind(this);
         this.getUserInfo = this.getUserInfo.bind(this);
         this.handleSignOut = this.handleSignOut.bind(this);
@@ -64,19 +59,18 @@ class Main extends React.Component {
     };
 
     //When componet first formed
-    componentDidMount(){
-        this.setState( {isLoading : true } )
+    componentDidMount() {
+        this.setState({ isLoading: true })
         this.storeMainAPILocally();
         this.getUserInfo();
     }
 
     //get user info and populate fav list from db -- nested call backs
-    getUserInfo(){
-        console.log("iam reading")
-        Axios.get('/api/users/'+this.props.currentUserID).then(resp=>{
-            this.setState({userInfo: resp.data}, ()=>{
-                this.state.userInfo.map( item =>{
-                    this.setState({favList: item.favorites})
+    getUserInfo() {
+        Axios.get('/api/users/' + this.props.currentUserID).then(resp => {
+            this.setState({ userInfo: resp.data }, () => {
+                this.state.userInfo.map(item => {
+                    return this.setState({ favList: item.favorites })
                 })
             })
         })
@@ -88,7 +82,7 @@ class Main extends React.Component {
 
         if (storedItemList) {
             this.intialSortBytitle(storedItemList);
-            this.setState( {isLoading : false } )
+            this.setState({ isLoading: false })
         }
         else {
             try {
@@ -117,7 +111,7 @@ class Main extends React.Component {
             return 0;
         });
 
-        this.setState( {movieData: storedItemList } );
+        this.setState({ movieData: storedItemList });
     }
 
     //sort by year request, on filter result as awell
@@ -209,7 +203,7 @@ class Main extends React.Component {
             copyFavs.push({ id: id, title: title, poster: poster })
 
             //adding item to mongoDB
-            Axios.post('/api/add/favorite/'+this.props.currentUserID, itemToAdd);
+            Axios.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
         }
         else {
             const found = copyFavs.some(item => {
@@ -220,7 +214,7 @@ class Main extends React.Component {
                 copyFavs.push({ id: id, title: title, poster: poster })
 
                 //adding item to mongoDB
-                Axios.post('/api/add/favorite/'+this.props.currentUserID, itemToAdd);
+                Axios.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
             }
         }
 
@@ -229,7 +223,7 @@ class Main extends React.Component {
 
     //handle delete item from fav request
     //request coming from child: FavList
-    deleteFavItem(id){
+    deleteFavItem(id) {
         const copyFavs = cloneDeep(this.state.favList);
         const remainigItems = copyFavs.filter(item => {
             return item.id !== id
@@ -240,102 +234,60 @@ class Main extends React.Component {
 
     //geting filter results from filtercontainter
     //request coming from child: FilterContainer
-    getFilterResult(result){
-        this.setState( {filterResult : result} ) 
-        this.setFilterFLAG();       
+    getFilterResult(result) {
+        this.setState({ filterResult: result })
+        this.setFilterFLAG();
     }
 
     //if Filter request coming from child: FilterContainer
-    setFilterFLAG(){
+    setFilterFLAG() {
         let searchFLAG = false;
         let listAllFLAG = false;
         let filterFLAG = true;
         let viewFLAG = false;
         let ActorProfileFLAG = false;
-        this.props.getFLAGS(searchFLAG, listAllFLAG, filterFLAG, viewFLAG, ActorProfileFLAG) 
+        this.props.getFLAGS(searchFLAG, listAllFLAG, filterFLAG, viewFLAG, ActorProfileFLAG)
     }
 
     //dislay all movies request coming from child: filterContainer
-    setListAllFLAG(){
+    setListAllFLAG() {
         let searchFLAG = false;
         let listAllFLAG = true;
         let FilterFLAG = false;
         let viewFLAG = false;
         let ActorProfileFLAG = false;
-        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG) 
+        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG)
     }
 
     //manger for calling different sort methods, request coming from child: AllMovieList
-    doSort(e){
+    doSort(e) {
         const value = e.target.value;
-        if (value === "sortByTitle") {this.sortByTitle()}
-        else if(value === "sortByYear") {this.sortByYear()}
-        else if (value === "sortByRating") {this.sortByRatings()}
+        if (value === "sortByTitle") { this.sortByTitle() }
+        else if (value === "sortByYear") { this.sortByYear() }
+        else if (value === "sortByRating") { this.sortByRatings() }
     }
 
     //Production result coming from child: CastCrewContainer
-    getProduction(production){
-        this.setState({production : production})
+    getProduction(production) {
+        this.setState({ production: production })
     }
 
     //Actor Id coming from child: CastCrewContainer
-    getActorID(ActorID){
-        this.setState( {ActorID : ActorID} )
+    getActorID(ActorID) {
+        this.setState({ ActorID: ActorID })
     }
 
-    handleSignOut(){
-        Axios.get('/logout').then(resp=>{
+    handleSignOut() {
+        Axios.get('/logout').then(resp => {
             window.location = "http://localhost:8080/login"
         })
     }
 
     render() {
-        console.log(this.state.favList)
-        {FN = this.state.userInfo.map(item => item.details.firstname)}
+        FN = this.state.userInfo.map(item => item.details.firstname)
         return (
             <div className="mainDiv">
-                {/* <Header /> */}
-
-                {/* <FavList favList={this.state.favList} deleteFavItem={this.deleteFavItem} />
-
-                <FilterContainter movieData={this.state.movieData} getFilterResult={this.getFilterResult}
-                    setListAllFLAG={this.setListAllFLAG} />
-                
-                <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG} getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG} getActorID={this.getActorID}/>
-
-                <AllMovieList isLoading={this.state.isLoading} movieData={this.state.movieData} searchValue={this.props.searchValue}
-                    searchFLAG={this.props.searchFLAG} listAllFLAG={this.props.listAllFLAG}
-                    sortByYear={this.sortByYear} sortByTitle={this.sortByTitle} sortByRatings={this.sortByRatings}
-                    doSort={this.doSort} addToFav={this.addToFav}
-                    filterResult={this.state.filterResult} filterFLAG={this.props.filterFLAG} 
-                    viewFLAG={this.props.viewFLAG} ActorProfileFLAG={this.props.ActorProfileFLAG} 
-                    getFLAGS={this.props.getFLAGS} getProduction={this.getProduction}
-                    ActorID={this.state.ActorID}/> */}
-
-
-                {/* <Layout className="layoutHead">
-                    <Header className="HeaderOuter">
-                        <CustomHeader/>
-                    </Header>
-                    <Layout className="LayoutBody">
-                        <Sider className="sider" width={400}>
-                            <FilterContainter movieData={this.state.movieData} getFilterResult={this.getFilterResult}
-                            setListAllFLAG={this.setListAllFLAG} />
-                        </Sider>
-                        <Content className="content">
-                            <AllMovieList isLoading={this.state.isLoading} movieData={this.state.movieData} searchValue={this.props.searchValue}
-                                    searchFLAG={this.props.searchFLAG} listAllFLAG={this.props.listAllFLAG}
-                                    sortByYear={this.sortByYear} sortByTitle={this.sortByTitle} sortByRatings={this.sortByRatings}
-                                    doSort={this.doSort} addToFav={this.addToFav}
-                                    filterResult={this.state.filterResult} filterFLAG={this.props.filterFLAG} 
-                                    viewFLAG={this.props.viewFLAG} ActorProfileFLAG={this.props.ActorProfileFLAG} 
-                                    getFLAGS={this.props.getFLAGS} getProduction={this.getProduction}
-                                    ActorID={this.state.ActorID}/> 
-                        </Content>
-                    </Layout>
-                </Layout> */}
-
-                <Layout style={{ minHeight: '100vh', width:'auto' }}>
+                <Layout style={{ minHeight: '100vh', width: 'auto' }}>
                     <Sider className="sider" collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                         <Link to='/'>
                             <img className="logoOnMain" src={logo} alt="HM's Logo" />
@@ -371,28 +323,29 @@ class Main extends React.Component {
                                 <Menu.Item key="3" style={{ height: '200px', width: '200px' }}>
                                     {
                                         this.state.userInfo.map((item, index) => {
-                                        return <UserInfo key={index} firstName={item.details.firstname} lastName={item.details.lastname}
+                                            return <UserInfo key={index} firstName={item.details.firstname} lastName={item.details.lastname}
                                                 country={item.details.country} city={item.details.city} thumbnail={item.picture.thumbnail}
                                                 dateJoined={item.membership.date_joined} favorites={item.favorites} email={item.email}
-                                        /> })
+                                            />
+                                        })
                                     }
                                 </Menu.Item>
                             </SubMenu>
                             <Menu.Item key="9">
-                                <LogoutOutlined onClick={this.handleSignOut}/>
+                                <LogoutOutlined onClick={this.handleSignOut} />
                                 <Button onClick={this.handleSignOut}>Sign Out</Button>
                             </Menu.Item>
                         </Menu>
                     </Sider>
                     <Layout className="site-layout">
                         <Header className="site-layout-background" style={{ padding: 0 }} >
-                            
-                                <h1 className="heading2">Hi&nbsp;{FN},&nbsp;&nbsp;WELCOME TO HM's MOVIE COLLECTION</h1>
+
+                            <h1 className="heading2">Hi&nbsp;{FN},&nbsp;&nbsp;WELCOME TO HM's MOVIE COLLECTION</h1>
                             <div className="buttonPackOnMain">
                                 <Link to='/'>
                                     <Button className="homeOnMain">Home <i className="fa fa-home"></i></Button>
                                 </Link>
-                                <About className="AboutonMain"/>
+                                <About className="AboutonMain" />
                             </div>
                         </Header>
                         <Content style={{ margin: '0 16px' }}>
@@ -407,7 +360,7 @@ class Main extends React.Component {
                                 </Breadcrumb.Item>
                             </Breadcrumb>
                             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                                
+
                                 <AllMovieList isLoading={this.state.isLoading} movieData={this.state.movieData} searchValue={this.props.searchValue}
                                     searchFLAG={this.props.searchFLAG} listAllFLAG={this.props.listAllFLAG}
                                     sortByYear={this.sortByYear} sortByTitle={this.sortByTitle} sortByRatings={this.sortByRatings}
@@ -416,7 +369,7 @@ class Main extends React.Component {
                                     viewFLAG={this.props.viewFLAG} ActorProfileFLAG={this.props.ActorProfileFLAG}
                                     getFLAGS={this.props.getFLAGS} getProduction={this.getProduction}
                                     ActorID={this.state.ActorID} />
-                                    <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG} getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG} getActorID={this.getActorID}/>
+                                <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG} getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG} getActorID={this.getActorID} />
                             </div>
                         </Content>
                         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>

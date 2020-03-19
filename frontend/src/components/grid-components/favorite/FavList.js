@@ -1,7 +1,6 @@
 import React from 'react'
 import SingleFav from './SingleFav';
 
-let rednerThis;
 //This class has only one parent: Main
 //This class has only one child: SingleFav
 class FavList extends React.Component {

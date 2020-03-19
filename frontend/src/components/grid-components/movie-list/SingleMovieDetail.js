@@ -39,6 +39,8 @@ let ratings;
 let count;
 let popularity;
 let overview;
+let id;
+let poster;
 
 class Singlemoviedetail extends React.Component {
     constructor() {
@@ -64,11 +66,14 @@ class Singlemoviedetail extends React.Component {
 
     //pass request to add to fav to parent
     addToFav(){
-        this.props.addToFav(this.state.title, this.state.poster, this.state.id);
+        this.props.addToFav(title, poster, id);
     }
 
     //handle if any null, undefined, "", clean Regex and display number of items with Algorithm
     handleCleanData() {
+        if (this.props.id !== null && this.props.id !== undefined){        
+            id = this.props.id;
+        }
         if (this.props.title !== null && this.props.title !== undefined && this.props.release_date !==null && this.props.release_date !== undefined){        
             title = this.props.title + "(" + this.props.release_date + ")";
         }
@@ -83,6 +88,7 @@ class Singlemoviedetail extends React.Component {
         }
         if (this.props.poster !== null && this.props.poster !== undefined) {
             imgUrl = "https://image.tmdb.org/t/p/w780/" + this.props.poster;
+            poster = this.props.poster;
         }
         if (this.props.genres !== null && this.props.genres !== undefined) {
             genres = this.props.genres.map((item, index) => {

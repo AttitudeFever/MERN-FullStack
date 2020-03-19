@@ -318,6 +318,41 @@
           text-shadow: 1px 1px 2px #153b4b; 
         }
 
+        /* /////////////////////////////////main grid//////////////////////////////////// */
+
+        .mainDiv {
+              background-image: url('../images/bgAboutus.jpg');
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: 50% 50%;
+              min-height: 100%;
+              min-width: 1024px;
+              width: 100%;
+              height: 100%;
+              position: fixed;
+              top: 0;
+              left: 0;
+              overflow-y: auto;
+              /* filter: blur(8px);
+              -webkit-filter: blur(8px); */
+        }
+
+        .mainDiv > div {
+          background-color: rgba(105, 104, 104, 0.1);
+          border-radius: 20px;
+          box-shadow: inset 0 0 20px rgba(123, 30, 177, 0.5), 0 0 20px rgba(17, 228, 228, 0.2)
+        }
+
+        .site-layout-background{
+          /* text-align: center;       */
+          border: 1px solid;
+          box-shadow: inset 0 0 20px rgba(123, 30, 177, 0.5), 0 0 20px rgba(17, 228, 228, 0.2);
+          outline-color: rgba(255, 255, 255, 0);
+          outline-offset: 15px;
+          position: relative;
+        }
+
+
     /* /////////////////////FilterForm////////////////////////// */
 
       #form h1, #form label{
@@ -818,8 +853,6 @@ input[type=range]:focus::-ms-fill-upper {
         background: rgba(255,255,255,.12);
       }
 
-      /* /////////////////////Favorites////////////////////// */
-
       .favs {
         /* height: 150px; */
         transition: height 2s;
@@ -951,4 +984,23 @@ input[type=range]:focus::-ms-fill-upper {
     outline-color: rgba(255, 255, 255, 0);
     outline-offset: 15px;
     text-shadow: 1px 1px 2px #153b4b; 
+  }
+
+  /* ///////////////////Cast crew container ///////////// */
+  .castcrewcontainer {
+    text-align: center;
+    transition: width 2s;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 500px;
+    height: 620px;
+    position: relative;
+    top:-10px;
+    left:0;
+    font-family: 'Fredericka the Great', cursive;
+    padding: 0;
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(123, 30, 177, 0.5), 0 0 20px rgba(17, 228, 228, 0.2);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 15px;
   }
