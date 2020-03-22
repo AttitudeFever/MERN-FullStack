@@ -4,10 +4,30 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-      <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+      <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
+      <style>
+         .hero-image{
+         background-image: url('https://images.unsplash.com/photo-1519750783826-e2420f4d687f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1868&q=80');
+         background-color: rgba(123, 30, 177, 0.3);
+         background-position: center;
+         background-repeat: no-repeat; 
+         background-size: cover; 
+         background-position: 50% 50%; 
+         min-height: 100%;
+         min-width: 1024px;
+         width: 100%;
+         height: auto;
+         position: fixed;
+         top: 0;
+         left: 0;
+         }
+
+      </style>
+   </head>
    <body>
       <header class="">
-         <nav class="navbar is-primary" role="navigation" aria-label="main navigation" >
+         <div class="hero-image"></div>
+         <!-- <nav class="navbar is-primary" role="navigation" aria-label="main navigation" >
             <div class="navbar-brand">
                <a class="navbar-item" href="https://bulma.io">
                   <img src="share-logo2.png" >
@@ -48,7 +68,7 @@
                   </div>
                </div>
             </div>
-         </nav>
+         </nav> -->
       </header>
       <section class="section">
          <%- body %>

@@ -8,8 +8,6 @@ const user = require('./usersRouter.js');
 router.get('/', helper.ensureAuthenticated, (req, resp) => {
    //resp.render('home', {user: req.user});
    resp.redirect("http://localhost:3000")
-   //console.log(req.user)
-
 });
 
 router.get('/login', (req, resp) => {

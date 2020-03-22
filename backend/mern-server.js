@@ -5,15 +5,10 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const flash = require('express-flash');
-// const Movie = require('./models/movie.js');
-// const movieRouter = require('./handlers/moviesRouter.js');
-// const favoriteRouter = require('./handlers/favoritesRouter.js');
-// const Favorite = require('./models/favorite.js');
 const path = require('path');
 const db = require('./handlers/dataConnector.js');
 
 // create connection to database
-//require('./handlers/dataConnector.js').connect();
 db.connect();
 // create an express app
 const app = express();
@@ -34,11 +29,11 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(cookieParser('oreos'));
 app.use(
     session({
-      secret: process.env.SECRET,
-      resave: true,
-      saveUninitialized: true
+        secret: process.env.SECRET,
+        resave: true,
+        saveUninitialized: true
     })
-  );
+);
 
 //Enable CORS for all resources on your server.
 app.use(function (req, res, next) {
@@ -66,24 +61,6 @@ app.use('/api', moviesRouter);
 //Users Api
 const usersRouter = require('./handlers/usersRouter.js');
 app.use('/api', usersRouter);
-
-
-// root endpoint will retrieve all paintings
-// app.get('/', function (req, res) {
-//     res.send('')
-// });
-
-// use the route handlers for movies
-//movieRouter.handleAllMovies(app, Movie);
-// movieRouter.handleSingleMovie(app, Movie);
-// movieRouter.handleAllMoviesBrief(app, Movie);
-// movieRouter.handleAllMoviesTitleRegex(app, Movie);
-// movieRouter.handleAllMoviesYear(app, Movie);
-// movieRouter.handleAllMoviesRating(app, Movie);
-
-// use the route handlers for favorites
-// favoriteRouter.handleAllFavorite(app, Favorite);
-// favoriteRouter.handleFavoriteDelete(app, Favorite);
 
 // customize the 404 error with our own middleware function
 app.use(function (req, res, next) {

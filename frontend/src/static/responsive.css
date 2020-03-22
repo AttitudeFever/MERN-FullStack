@@ -178,6 +178,7 @@
   }
   
   .aboutusHome:hover {
+    color: #000000;
     border: 1px solid;
     box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
     outline-color: rgba(255, 255, 255, 0);
@@ -197,6 +198,7 @@
   }
   
   .AllHome:hover {
+    color: #000000;
     border: 1px solid;
     box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
     outline-color: rgba(255, 255, 255, 0);
@@ -270,6 +272,7 @@
         }
         
         .about:hover {
+          color: #000000;
           border: 1px solid;
           box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
           outline-color: rgba(255, 255, 255, 0);
@@ -301,6 +304,37 @@
         }
         
         .home:hover {
+          border: 1px solid;
+          box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
+          outline-color: rgba(255, 255, 255, 0);
+          outline-offset: 15px;
+          text-shadow: 1px 1px 2px #153b4b; 
+        }
+
+        #homeLogout{
+          text-shadow: 1px 1px 2px #153b4b; 
+          text-align: center; 
+          border: 1px solid;
+          box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
+          outline-color: rgba(255, 255, 255, 0);
+          outline-offset: 15px;
+          padding-bottom: 20px;
+          width: 800px;
+          position: relative;
+          top:550px;
+          left: 50%;
+          margin-right: -50%;
+          transform: translate(-50%, -50%);
+          padding: 5px;
+          border: 0 solid;
+          text-shadow: none;
+          transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+          border-radius: 20px;
+          float:left;
+        }
+        
+        #homeLogout:hover {
+          color:black;
           border: 1px solid;
           box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
           outline-color: rgba(255, 255, 255, 0);

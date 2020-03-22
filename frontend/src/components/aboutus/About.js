@@ -56,7 +56,7 @@ class About extends React.Component {
     render() {
         return (
             <div className="aboutUs">
-                <Button className="aboutusHome" onClick={this.handleOpenModal}>About Us <i className="fa fa-group"></i></Button>
+                <Button className="aboutusHome" onClick={this.handleOpenModal}>About Us&nbsp;<i className="fa fa-group"></i></Button>
                 <ReactModal     //Reusable React Modal to create popup effect handling and style is defined on the opening tag
                     isOpen={this.state.showModal}
                     onRequestClose={this.closeModal}
