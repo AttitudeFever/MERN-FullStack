@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import About from './aboutus/About';
 import logo from '../images/logo2.png';
 import Axios from 'axios'
-import UserInfo from './grid-components/UserInfo'
 import {Button,  Layout, Menu, Breadcrumb } from 'antd';
 import { LogoutOutlined, FilterOutlined, UserOutlined } from '@ant-design/icons';
 

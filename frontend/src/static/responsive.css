@@ -34,48 +34,43 @@
     line-height: 2;
   }
 
-  .AboutonMain{
+  /* .AboutonMain{
     padding: 5px;
     border: 0 solid;
     text-shadow: none;
     transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
     border-radius: 20px;
-    float:left;
-    margin-left: 20px;
+    float:right;
+    margin-top: -800px;
+    margin-left: 10px;
   }
   
   .AboutonMain:hover {
+    color: #000000;
     border: 1px solid;
     box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
     outline-color: rgba(255, 255, 255, 0);
     outline-offset: 15px;
     text-shadow: 1px 1px 2px #153b4b; 
-  }
+  } */
 
   .homeOnMain{
+    /* position: relative; */
+    /* top:-50px; */
+    margin-top: -60px;
+    margin-left: 10px;
     padding: 5px;
     border: 0 solid;
     text-shadow: none;
     transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
     border-radius: 20px;
-    /* margin-right: 50px; */
     float: left;;
   }
 
-  .buttonPackOnMain{
-    position: relative;
-    top: -60px;
-    left: 1100px;
-    /* border: 5px solid; */
-    width: 200px;
-    height: 50px;
-    display:inline-block;
-    margin-right: -50px;
-
-  }
   
   .homeOnMain:hover {
     border: 1px solid;
+    color: #000000;
     box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
     outline-color: rgba(255, 255, 255, 0);
     outline-offset: 15px;
@@ -345,6 +340,7 @@
         /* /////////////////////////////////main grid//////////////////////////////////// */
   /* //////////////////////////////////Layout////////////// */
   .site-layout .site-layout-background {
+    /* text-align: center; */
     /* background: pink; */
     background-image: url('../images/bgAboutus.jpg');
     background-size: cover;
@@ -368,7 +364,7 @@
       background-position: 50% 50%;
         
     }
-        .mainDiv.test {
+        .mainDiv {
               background-image: url('../images/bgAboutus.jpg');
               background-size: cover;
               background-repeat: no-repeat;
@@ -377,11 +373,6 @@
               -webkit-filter: blur(8px); */
         }
 
-        /* .mainDiv.test {
-          background-color: rgba(105, 104, 104, 0.1);
-          border-radius: 20px;
-          box-shadow: inset 0 0 20px rgba(123, 30, 177, 0.5), 0 0 20px rgba(17, 228, 228, 0.2)
-        } */
 
         .site-layout-background{
           /* text-align: center;       */

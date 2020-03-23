@@ -295,7 +295,7 @@ class Main extends React.Component {
                         <Link to='/'>
                             <img className="logoOnMain" src={logo} alt="HM's Logo" />
                         </Link>
-                        <Menu className="Menu"defaultSelectedKeys={['1']} mode="inline">
+                        <Menu className="Menu" defaultSelectedKeys={['1']} mode="inline">
                             <SubMenu
                                 key="sub2"
                                 title={
@@ -310,10 +310,6 @@ class Main extends React.Component {
                                         setListAllFLAG={this.setListAllFLAG} />
                                 </Menu.Item>
                             </SubMenu>
-                            {/* <Menu.Item key="2">
-                                <DesktopOutlined />
-                                <span>Option 2</span>
-                            </Menu.Item> */}
                             <SubMenu
                                 key="sub1"
                                 title={
@@ -335,29 +331,22 @@ class Main extends React.Component {
                                 </Menu.Item>
                             </SubMenu>
                             <Menu.Item key="9">
-                                <LogoutOutlined onClick={this.handleSignOut} className="filterOutlined"/>
-                                <Button onClick={this.handleSignOut} className="signout">Sign Out</Button>
+                                <LogoutOutlined onClick={this.handleSignOut} className="filterOutlined" />
+                                <Button onClick={this.handleSignOut} className="signout">Logout</Button>
                             </Menu.Item>
                         </Menu>
                     </Sider>
                     <Layout className="site-layout">
                         <Header className="site-layout-background" style={{ padding: 0 }} >
-
                             <h1 className="heading2">Hi&nbsp;{FN},&nbsp;&nbsp;WELCOME TO HM's MOVIE COLLECTION</h1>
-                            <div className="buttonPackOnMain">
+                            <Menu style={{ backgroundColor: "transparent" }}>
                                 <Link to='/'>
                                     <Button className="homeOnMain">Home <i className="fa fa-home"></i></Button>
                                 </Link>
-                                <About className="AboutonMain" />
-                            </div>
+                            </Menu>
                         </Header>
                         <Content style={{ margin: '0 16px' }}>
                             <Breadcrumb style={{ margin: '16px 0' }}>
-                                {/* <div>
-                                    <Badge count={5}>
-                                        <div className="fav-badge" />
-                                    </Badge>
-                                </div> */}
                                 <Breadcrumb.Item>
                                     <FavList favList={this.state.favList} deleteFavItem={this.deleteFavItem} />
                                 </Breadcrumb.Item>
@@ -372,12 +361,12 @@ class Main extends React.Component {
                                     viewFLAG={this.props.viewFLAG} ActorProfileFLAG={this.props.ActorProfileFLAG}
                                     getFLAGS={this.props.getFLAGS} getProduction={this.getProduction}
                                     ActorID={this.state.ActorID} />
-                                <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG} 
-                                        getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG} 
-                                        getActorID={this.getActorID}/>
+                                <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG}
+                                    getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG}
+                                    getActorID={this.getActorID} />
                             </div>
                         </Content>
-                        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                        <Footer style={{ textAlign: 'center' }}>HM'S ©2020 Created with MERN FullStack <About /></Footer>
                     </Layout>
                 </Layout>
     );
