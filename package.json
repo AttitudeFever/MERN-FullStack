@@ -9,7 +9,8 @@
   "main": "mern-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node mern-server.js"
+    "start": "node mern-server.js",
+    "heroku-postbuild":"cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",

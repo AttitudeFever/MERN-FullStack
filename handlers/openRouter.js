@@ -19,7 +19,6 @@ router.get('/', helper.ensureAuthenticated, (req, resp) => {
    else {
       resp.redirect("http://localhost:3000")
    }
-
 });
 
 router.get('/login', (req, resp) => {
