@@ -13,7 +13,7 @@ router.get('/', helper.ensureAuthenticated, (req, resp) => {
    if (process.env.NODE_ENV === 'production') {
       app.use(express.static('../frontend/build'))
       // app.get('*', (req, resp) =>{
-         resp.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+         resp.sendFile(path.join(__dirname, '../frontend', 'build', 'index.html'))
       // })
    }
    else {
