@@ -282,7 +282,7 @@ class Main extends React.Component {
 
     handleSignOut() {
         Axios.get('/logout').then(resp => {
-            window.location = "http://localhost:8080/login"
+            window.location = "https://hms-mern-backend.herokuapp.com/login"
         })
     }
 
