@@ -3,11 +3,23 @@ const router = express.Router();
 const passport = require('passport');
 const helper = require('./helpers.js');
 const user = require('./usersRouter.js');
+// create an express app
+const app = express();
+const path = require('path');
 
 // Welcome Page
 router.get('/', helper.ensureAuthenticated, (req, resp) => {
    //resp.render('home', {user: req.user});
-   resp.redirect("http://localhost:3000")
+   if (process.env.NODE_ENV === 'production') {
+      app.use(express.static('../fronend/build'))
+      app.get('*', (req, resp) =>{
+         resp.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+      })
+   }
+   else {
+      resp.redirect("http://localhost:3000")
+   }
+
 });
 
 router.get('/login', (req, resp) => {

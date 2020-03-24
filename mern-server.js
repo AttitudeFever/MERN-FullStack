@@ -5,7 +5,6 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const flash = require('express-flash');
-const path = require('path');
 const db = require('./handlers/dataConnector.js');
 
 // create connection to database
@@ -71,6 +70,7 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.json({ error: err });
 });
+
 
 let port = process.env.PORT || 8080;
 app.listen(port, function () {
