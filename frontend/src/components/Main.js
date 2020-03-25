@@ -292,7 +292,7 @@ class Main extends React.Component {
         FN = this.state.userInfo.map(item => item.details.firstname)
         return (
             <div className="mainDiv">
-                <Layout style={{ minHeight: '100vh', width: 'auto' }}>
+                {/* <Layout style={{ minHeight: '100vh', width: 'auto' }}>
                     <Sider className="sider" collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                         <Link to='/'>
                             <img className="logoOnMain" src={logo} alt="HM's Logo" />
@@ -371,7 +371,7 @@ class Main extends React.Component {
                         <Footer style={{ textAlign: 'center' }}>HM'S ©2020 Created with MERN FullStack <About /></Footer>
                     </Layout>
                 </Layout>
-    );
+    ); */}
             </div>
         )
     }
