@@ -3,8 +3,6 @@ const router = express.Router();
 const passport = require('passport');
 const helper = require('./helpers.js');
 const user = require('./usersRouter.js');
-// create an express app
-const app = express();
 const path = require('path');
 
 // Welcome Page
