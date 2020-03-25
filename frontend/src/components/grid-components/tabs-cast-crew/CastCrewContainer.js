@@ -68,7 +68,7 @@ class CastCrewContainer extends React.Component {
         }
 
         //displaying will only happen when Actor View FLAG or MovieView FLAG is True
-        renderThis = this.props.viewFLAG || this.props.ActorProfileFLAG ? <TabCastCrew cast={castArray} crew={crewArray} getFLAGS={this.props.getFLAGS} getActorID={this.props.getActorID}/> : null;
+        renderThis = this.props.viewFLAG || this.props.ActorProfileFLAG || this.props.FavViewFlag ? <TabCastCrew cast={castArray} crew={crewArray} getFLAGS={this.props.getFLAGS} getActorID={this.props.getActorID}/> : null;
         
     }
 

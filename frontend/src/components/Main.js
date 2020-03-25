@@ -374,7 +374,7 @@ class Main extends React.Component {
                                     favViewID={this.state.favViewID} FavViewFlag={this.props.FavViewFlag}/>
                                 <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG}
                                     getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG}
-                                    getActorID={this.getActorID} />
+                                    getActorID={this.getActorID} FavViewFlag={this.props.FavViewFlag} />
                             </div>
                         </Content>
                         <Footer style={{ textAlign: 'center' }}>HM'S ©2020 Created with MERN FullStack <About /></Footer>
