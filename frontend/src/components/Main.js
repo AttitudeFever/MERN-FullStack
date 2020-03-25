@@ -69,6 +69,7 @@ class Main extends React.Component {
     //get user info and populate fav list from db -- nested call backs
     getUserInfo() {
         AxiosConfig.get('/api/users/' + this.props.currentUserID).then(resp => {
+            console.log(resp.data)
             this.setState({ userInfo: resp.data }, () => {
                 this.state.userInfo.map(item => {
                     return this.setState({ favList: item.favorites })
