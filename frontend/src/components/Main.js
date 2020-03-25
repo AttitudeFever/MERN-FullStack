@@ -289,9 +289,10 @@ class Main extends React.Component {
     }
 
     render() {
-        FN = this.state.userInfo.map(item => item.details.firstname)
+        //FN = this.state.userInfo.map(item => item.details.firstname)
         return (
             <div className="mainDiv">
+                <p>Hi</p>
                 {/* <Layout style={{ minHeight: '100vh', width: 'auto' }}>
                     <Sider className="sider" collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                         <Link to='/'>
