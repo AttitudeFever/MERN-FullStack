@@ -6,7 +6,7 @@ const user = require('./usersRouter.js');
 const path = require('path');
 
 // Welcome Page
-router.get('/', helper.ensureAuthenticated, (req, resp) => {
+router.get('/main', helper.ensureAuthenticated, (req, resp) => {
    //resp.render('home', {user: req.user});
    if (process.env.NODE_ENV === 'production') {
       //app.use(express.static(path.join(__dirname, "../frontend", "build")))
