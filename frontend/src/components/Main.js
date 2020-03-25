@@ -9,7 +9,7 @@ import FilterContainter from './grid-components/filter/FilterContainer';
 import UserInfo from './grid-components/UserInfo';
 import * as cloneDeep from 'lodash/cloneDeep';
 import CastCrewContainer from './grid-components/tabs-cast-crew/CastCrewContainer';
-//import Axios from 'axios';
+import Axios from 'axios';
 import AxiosConfig from './utils/AxiosConfig'
 import { Layout, Menu, Breadcrumb, Button, Badge } from 'antd';
 import { LogoutOutlined, FilterOutlined, UserOutlined } from '@ant-design/icons';
@@ -68,7 +68,7 @@ class Main extends React.Component {
 
     //get user info and populate fav list from db -- nested call backs
     getUserInfo() {
-        AxiosConfig.get('/api/users/' + this.props.currentUserID).then(resp => {
+        Axios.get('/api/users/' + this.props.currentUserID).then(resp => {
             this.setState({ userInfo: resp.data }, () => {
                 this.state.userInfo.map(item => {
                     return this.setState({ favList: item.favorites })
@@ -87,7 +87,7 @@ class Main extends React.Component {
         }
         else {
             try {
-                AxiosConfig.get('/api/movies').then(resp => {
+                Axios.get('/api/movies').then(resp => {
                     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(resp.data));
                     storedItemList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
                     this.intialSortBytitle(storedItemList);
@@ -204,7 +204,7 @@ class Main extends React.Component {
             copyFavs.push({ id: id, title: title, poster: poster })
 
             //adding item to mongoDB
-            AxiosConfig.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
+            Axios.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
         }
         else {
             const found = copyFavs.some(item => {
@@ -215,7 +215,7 @@ class Main extends React.Component {
                 copyFavs.push({ id: id, title: title, poster: poster })
 
                 //adding item to mongoDB
-                AxiosConfig.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
+                Axios.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
             }
         }
 
@@ -233,7 +233,7 @@ class Main extends React.Component {
         this.setState({ favList: remainigItems })
         //deleteing fav item from mongoDB
         var itemToDel = { id: id }
-        AxiosConfig.post('/api/delete/favorite/' + this.props.currentUserID, itemToDel);
+        Axios.post('/api/delete/favorite/' + this.props.currentUserID, itemToDel);
     }
 
     //geting filter results from filtercontainter
@@ -282,7 +282,7 @@ class Main extends React.Component {
     }
 
     handleSignOut() {
-        AxiosConfig.get('/logout').then(resp => {
+        Axios.get('/logout').then(resp => {
             window.location = "https://hms-mern-backend.herokuapp.com/login"
         })
     }

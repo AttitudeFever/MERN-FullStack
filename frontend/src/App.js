@@ -34,9 +34,10 @@ class App extends React.Component {
         this.setState( {searchFLAG : searchFLAG, listAllFLAG : listAllFLAG, filterFLAG : filterFLAG, viewFLAG: viewFLAG, ActorProfileFLAG: ActorProfileFLAG} );
     }
 
-    async componentDidMount(){
-        await AxiosConfig.get('/api/userID').then(resp=>{
-            this.setState({currentUserID: resp.data}, ()=>{
+    componentDidMount() {
+        AxiosConfig.get('/api/userID').then(resp => {
+            console.log(resp)
+            this.setState({ currentUserID: resp.data }, () => {
                 console.log(this.state.currentUserID)
             })
         })
