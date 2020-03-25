@@ -36,7 +36,7 @@ class FavList extends React.Component {
         this.props.getFavViewID(id);
         document.getElementById('sort').style.display = "none";
         document.getElementById('castcrewcontainer').style.display = "inline-block";
-        this.setViewFLAG()
+        this.setFavViewFLAG()
     }
 
     //if movie detail view is request
