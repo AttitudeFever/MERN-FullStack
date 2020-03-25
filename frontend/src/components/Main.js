@@ -37,6 +37,7 @@ class Main extends React.Component {
             production: [],
             ActorID: 0,
             userInfo: [],
+            favViewID:0
         }
         this.storeMainAPILocally = this.storeMainAPILocally.bind(this);
         this.intialSortBytitle = this.intialSortBytitle.bind(this);
@@ -53,6 +54,7 @@ class Main extends React.Component {
         this.getActorID = this.getActorID.bind(this);
         this.getUserInfo = this.getUserInfo.bind(this);
         this.handleSignOut = this.handleSignOut.bind(this);
+        this.getFavViewID = this.getFavViewID.bind(this);
     }
 
     onCollapse = collapsed => {
@@ -251,7 +253,8 @@ class Main extends React.Component {
         let filterFLAG = true;
         let viewFLAG = false;
         let ActorProfileFLAG = false;
-        this.props.getFLAGS(searchFLAG, listAllFLAG, filterFLAG, viewFLAG, ActorProfileFLAG)
+        let FavViewFlag = false;
+        this.props.getFLAGS(searchFLAG, listAllFLAG, filterFLAG, viewFLAG, ActorProfileFLAG, FavViewFlag)
     }
 
     //dislay all movies request coming from child: filterContainer
@@ -261,7 +264,8 @@ class Main extends React.Component {
         let FilterFLAG = false;
         let viewFLAG = false;
         let ActorProfileFLAG = false;
-        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG)
+        let FavViewFlag = false;
+        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG, FavViewFlag)
     }
 
     //manger for calling different sort methods, request coming from child: AllMovieList
@@ -286,6 +290,10 @@ class Main extends React.Component {
         AxiosConfig.get('/logout').then(resp => {
             window.location = "https://hms-mern-backend.herokuapp.com/login"
         })
+    }
+
+    getFavViewID(favViewID){
+        this.setState({favViewID : favViewID})
     }
 
     render() {
@@ -350,7 +358,7 @@ class Main extends React.Component {
                         <Content style={{ margin: '0 16px' }}>
                             <Breadcrumb style={{ margin: '16px 0' }}>
                                 <Breadcrumb.Item>
-                                    <FavList favList={this.state.favList} deleteFavItem={this.deleteFavItem} />
+                                    <FavList favList={this.state.favList} deleteFavItem={this.deleteFavItem} getFLAGS={this.props.getFLAGS} getFavViewID={this.getFavViewID}/>
                                 </Breadcrumb.Item>
                             </Breadcrumb>
                             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
@@ -362,7 +370,8 @@ class Main extends React.Component {
                                     filterResult={this.state.filterResult} filterFLAG={this.props.filterFLAG}
                                     viewFLAG={this.props.viewFLAG} ActorProfileFLAG={this.props.ActorProfileFLAG}
                                     getFLAGS={this.props.getFLAGS} getProduction={this.getProduction}
-                                    ActorID={this.state.ActorID} />
+                                    ActorID={this.state.ActorID} 
+                                    favViewID={this.state.favViewID} FavViewFlag={this.props.FavViewFlag}/>
                                 <CastCrewContainer production={this.state.production} viewFLAG={this.props.viewFLAG}
                                     getFLAGS={this.props.getFLAGS} ActorProfileFLAG={this.props.ActorProfileFLAG}
                                     getActorID={this.getActorID} />

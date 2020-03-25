@@ -35,7 +35,8 @@ class MovieView extends React.Component {
         let FilterFLAG = false;
         let viewFLAG = false;
         let ActorProfileFLAG = false;
-        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG)
+        let FavViewFlag = false;
+        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG, FavViewFlag)
     }
 
     async componentDidMount(){

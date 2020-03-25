@@ -9,12 +9,19 @@ class SingleFav extends React.Component {
         super()
         this.state = {}
         this.deleteFavItem = this.deleteFavItem.bind(this);
+        this.captureViewID = this.captureViewID.bind(this);
     }
 
     //delete item request
     deleteFavItem(){
         this.props.deleteFavItem(this.props.id)
     }
+
+    //Pass to parent, movie id upon view request
+    captureFavViewID() {
+        this.props.getFavViewID(this.props.id)
+    }
+
     render() {
         const poster = "https://image.tmdb.org/t/p/w154" + this.props.poster;
         return (
@@ -29,7 +36,8 @@ class SingleFav extends React.Component {
                 transitionLeaveTimeout={300}>
 
                 <div className="singleFav">
-                    <img src={poster} alt={this.props.title} />
+
+                    <img src={poster} alt={this.props.title} onClick={this.captureViewID}/>
                     <button id="btnDelete" className="fa fa-close" onClick={this.deleteFavItem} ></button>
                 </div>
             </CSSTransitionGroup>

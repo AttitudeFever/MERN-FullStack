@@ -18,6 +18,7 @@ class App extends React.Component {
             filterFLAG:false,
             viewFLAG:false,
             ActorProfileFLAG:false,
+            FavViewFlag:false,
             currentUserID:0
         }
         this.getSearchValue = this.getSearchValue.bind(this);
@@ -30,8 +31,8 @@ class App extends React.Component {
     }
 
     //FLAGS coming from child components: Home and Main
-    getFLAGS(searchFLAG, listAllFLAG, filterFLAG, viewFLAG, ActorProfileFLAG){
-        this.setState( {searchFLAG : searchFLAG, listAllFLAG : listAllFLAG, filterFLAG : filterFLAG, viewFLAG: viewFLAG, ActorProfileFLAG: ActorProfileFLAG} );
+    getFLAGS(searchFLAG, listAllFLAG, filterFLAG, viewFLAG, ActorProfileFLAG, FavViewFlag){
+        this.setState( {searchFLAG : searchFLAG, listAllFLAG : listAllFLAG, filterFLAG : filterFLAG, viewFLAG: viewFLAG, ActorProfileFLAG: ActorProfileFLAG, FavViewFlag: FavViewFlag} );
     }
 
     componentDidMount() {
@@ -54,7 +55,8 @@ class App extends React.Component {
                         searchFLAG={this.state.searchFLAG} listAllFLAG={this.state.listAllFLAG}
                         filterFLAG={this.state.filterFLAG} viewFLAG={this.state.viewFLAG}
                         ActorProfileFLAG={this.state.ActorProfileFLAG} getFLAGS={this.getFLAGS}
-                        currentUserID={this.state.currentUserID} />} />
+                        currentUserID={this.state.currentUserID} 
+                        FavViewFlag={this.state.FavViewFlag}/>} />
 
                 </Switch>
             </main>

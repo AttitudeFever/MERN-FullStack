@@ -27,7 +27,6 @@ class FilterContainer extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClear = this.handleClear.bind(this);
-        // this.filterPopup = this.filterPopup.bind(this);
     }
 
 //handle change on Form Elements

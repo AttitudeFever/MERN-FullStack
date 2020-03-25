@@ -26,7 +26,8 @@ class Cast extends React.Component {
         let FilterFLAG = false;
         let viewFLAG = false;
         let ActorProfileFLAG = true;
-        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG)
+        let FavViewFlag = false;
+        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG, FavViewFlag)
     }
 
     //conditonal rendering if data coming is not undefined

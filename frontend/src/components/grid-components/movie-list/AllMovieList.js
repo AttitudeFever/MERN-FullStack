@@ -65,6 +65,9 @@ class AllMovieList extends React.Component {
             else if (this.props.viewFLAG){
                 renderThis = <MovieView viewID={this.state.viewID} getFLAGS={this.props.getFLAGS} addToFav={this.props.addToFav} getProduction={this.getProduction}/>
             }
+            else if (this.props.FavViewFlag){
+                renderThis = <MovieView viewID={this.props.favViewID} getFLAGS={this.props.getFLAGS} addToFav={this.props.addToFav} getProduction={this.getProduction}/>
+            }
             else if (this.props.ActorProfileFLAG){
                 renderThis = <ActorProfileContainer  key={this.childKey} getFLAGS={this.props.getFLAGS} ActorID={this.props.ActorID}/>
             }
@@ -86,7 +89,8 @@ class AllMovieList extends React.Component {
         let FilterFLAG = false;
         let viewFLAG = true;
         let ActorProfileFLAG = false;
-        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG)
+        let FavViewFlag = false;
+        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG, FavViewFlag)
     }
 
     //get production data from MovieView

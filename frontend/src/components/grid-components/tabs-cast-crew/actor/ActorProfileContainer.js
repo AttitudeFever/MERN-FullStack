@@ -43,7 +43,8 @@ class ActorProfileContainer extends React.Component {
         let FilterFLAG = false;
         let viewFLAG = true;
         let ActorProfileFLAG = false;
-        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG)
+        let FavViewFlag = false;
+        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG, FavViewFlag)
     }
 
     //conditional rendering if busy

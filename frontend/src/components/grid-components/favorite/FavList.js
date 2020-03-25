@@ -7,7 +7,10 @@ class FavList extends React.Component {
     constructor() {
         super()
         this.state = {}
+        this.getViewID = this.getViewID.bind(this);
+        this.setViewFLAG = this.setViewFLAG.bind(this);
     }
+
 
     //handle reuest to expand or close Fav bar
     favPopup() {
@@ -28,6 +31,24 @@ class FavList extends React.Component {
             favs.style.overflow = "hidden";
         }
     }
+    //capture id of that particular movie, request coming from child: MovieView
+    getFavViewID(id) {
+        this.props.getFavViewID(id);
+        document.getElementById('sort').style.display = "none";
+        document.getElementById('castcrewcontainer').style.display = "inline-block";
+        this.setViewFLAG()
+    }
+
+    //if movie detail view is request
+    setFavViewFLAG() {
+        let searchFLAG = false;
+        let listAllFLAG = false;
+        let FilterFLAG = false;
+        let viewFLAG = false;
+        let ActorProfileFLAG = false;
+        let FavViewFlag = true;
+        this.props.getFLAGS(searchFLAG, listAllFLAG, FilterFLAG, viewFLAG, ActorProfileFLAG, FavViewFlag)
+    }
 
     render() {
         return (
@@ -35,7 +56,7 @@ class FavList extends React.Component {
                 <button id="btnFavorite" onClick={this.favPopup}>Favorites<i className="fa fa-heart"></i></button>
                 {
                     this.props.favList.map((item, index) => {
-                    return <SingleFav key={index} id={item.id} title={item.title} poster={item.poster} deleteFavItem={this.props.deleteFavItem} /> })
+                    return <SingleFav key={index} id={item.id} title={item.title} poster={item.poster} deleteFavItem={this.props.deleteFavItem} getFavViewID={this.getFavViewID}/> })
                 }
             </div>
         )
