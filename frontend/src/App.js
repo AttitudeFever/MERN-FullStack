@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Main from './components/Main'
 import Axios from 'axios';
 import AxiosConfig from './components/utils/AxiosConfig.js'
+import CustomHeader from './components/grid-components/CustomHeader'
 
 //This class is responsile to handle Search and diplay FLAGS
 //Has 2 child compoments Home and Main
@@ -50,11 +51,13 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/" exact render={(props) => <Home getSearchValue={this.getSearchValue} getFLAGS={this.getFLAGS} />} />
 
-                    <Route path="/main" exact render={(props) => <Main searchValue={this.state.searchValue}
+                    {/* <Route path="/main" exact render={(props) => <Main searchValue={this.state.searchValue}
                         searchFLAG={this.state.searchFLAG} listAllFLAG={this.state.listAllFLAG}
                         filterFLAG={this.state.filterFLAG} viewFLAG={this.state.viewFLAG}
                         ActorProfileFLAG={this.state.ActorProfileFLAG} getFLAGS={this.getFLAGS}
-                        currentUserID={this.state.currentUserID} />} />
+                        currentUserID={this.state.currentUserID} />} /> */}
+
+                    <Route path="/main" exact render={(props) => <CustomHeader/>} />
                 </Switch>
             </main>
         )

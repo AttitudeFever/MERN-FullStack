@@ -67,7 +67,8 @@ class Home extends React.Component {
                     </h1>
                     <div className="buttonPackHome" >
                         <Link to='/main'>
-                            <Button className="AllHome" onClick={this.setListAllFLAG}>List All Movies&nbsp;<i className="fa fa-film"></i></Button>
+                            {/* <Button className="AllHome" onClick={this.setListAllFLAG}>List All Movies&nbsp;<i className="fa fa-film"></i></Button> */}
+                        
                         </Link>
                         <About />
                     </div>
