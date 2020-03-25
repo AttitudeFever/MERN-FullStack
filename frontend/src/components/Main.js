@@ -87,7 +87,7 @@ class Main extends React.Component {
         }
         else {
             try {
-                Axios.get('/api/movies').then(resp => {
+                AxiosConfig.get('/api/movies').then(resp => {
                     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(resp.data));
                     storedItemList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
                     this.intialSortBytitle(storedItemList);
@@ -204,7 +204,7 @@ class Main extends React.Component {
             copyFavs.push({ id: id, title: title, poster: poster })
 
             //adding item to mongoDB
-            Axios.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
+            AxiosConfig.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
         }
         else {
             const found = copyFavs.some(item => {
@@ -215,7 +215,7 @@ class Main extends React.Component {
                 copyFavs.push({ id: id, title: title, poster: poster })
 
                 //adding item to mongoDB
-                Axios.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
+                AxiosConfig.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
             }
         }
 
@@ -233,7 +233,7 @@ class Main extends React.Component {
         this.setState({ favList: remainigItems })
         //deleteing fav item from mongoDB
         var itemToDel = { id: id }
-        Axios.post('/api/delete/favorite/' + this.props.currentUserID, itemToDel);
+        AxiosConfig.post('/api/delete/favorite/' + this.props.currentUserID, itemToDel);
     }
 
     //geting filter results from filtercontainter
@@ -282,7 +282,7 @@ class Main extends React.Component {
     }
 
     handleSignOut() {
-        Axios.get('/logout').then(resp => {
+        AxiosConfig.get('/logout').then(resp => {
             window.location = "https://hms-mern-backend.herokuapp.com/login"
         })
     }
