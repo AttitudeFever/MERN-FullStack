@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Home from './components/Home'
 import Main from './components/Main'
 import Axios from 'axios';
+import AxiosConfig from './components/utils/AxiosConfig.js'
 
 //This class is responsile to handle Search and diplay FLAGS
 //Has 2 child compoments Home and Main
@@ -33,12 +34,14 @@ class App extends React.Component {
         this.setState( {searchFLAG : searchFLAG, listAllFLAG : listAllFLAG, filterFLAG : filterFLAG, viewFLAG: viewFLAG, ActorProfileFLAG: ActorProfileFLAG} );
     }
 
-    componentDidMount(){
-        Axios.get('/api/userID').then(resp=>{
-            this.setState({currentUserID: resp.data})
+    async componentDidMount(){
+        await AxiosConfig.get('/api/userID').then(resp=>{
+            this.setState({currentUserID: resp.data}, ()=>{
+                console.log(this.state.currentUserID)
+            })
         })
     }
-    
+
     //Rounting is set for SPA
     render(){
         return (
