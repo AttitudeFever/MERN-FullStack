@@ -62,6 +62,7 @@ require('./handlers/auth.js');
 const openRoutes = require('./handlers/openRouter.js');
 const redirectingRoute =  express.static(path.join(__dirname, "./frontend", "build"));
 app.use('/', openRoutes, redirectingRoute);
+app.use('/main', openRoutes, redirectingRoute);
 
 // These routes only if logged in
 //Movies Api
