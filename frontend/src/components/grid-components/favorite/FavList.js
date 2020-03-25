@@ -7,7 +7,7 @@ class FavList extends React.Component {
     constructor() {
         super()
         this.state = {}
-        this.getViewID = this.getViewID.bind(this);
+        this.getFavViewID = this.getFavViewID.bind(this);
         this.setViewFLAG = this.setViewFLAG.bind(this);
     }
 
