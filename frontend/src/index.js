@@ -6,4 +6,4 @@ import App from './App';
 // import '../src/static/antd.css';
 
 //Main render Parent that has only one child component: App
-ReactDom.render(<BrowserRouter basename="/"> <App /> </BrowserRouter>, document.querySelector('#root'));
+ReactDom.render(<BrowserRouter basename={`${process.env.PUBLIC_URL}/`}> <App /> </BrowserRouter>, document.querySelector('#root'));
