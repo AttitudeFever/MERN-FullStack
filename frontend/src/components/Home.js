@@ -65,7 +65,7 @@ class Home extends React.Component {
                         <img className="logo2" src={logo} alt="MRU Theater Logo" />
                     </h1>
                     <div className="buttonPackHome" >
-                        <Link to='/main'>
+                        <Link to='/login'>
                             <Button className="AllHome" onClick={this.setListAllFLAG}>List All Movies&nbsp;<i className="fa fa-film"></i></Button>
                         </Link>
                         <About />
