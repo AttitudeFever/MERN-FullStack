@@ -63,7 +63,7 @@ class Main extends React.Component {
     componentDidMount() {
         this.setState({ isLoading: true })
         //this.storeMainAPILocally();
-        //this.getUserInfo();
+        this.getUserInfo();
     }
 
     //get user info and populate fav list from db -- nested call backs
