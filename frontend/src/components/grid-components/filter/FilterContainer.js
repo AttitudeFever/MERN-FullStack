@@ -1,6 +1,7 @@
 import React from 'react'
 import FilterComponent from './FilterComponent'
-import Axios from 'axios';
+//import Axios from 'axios';
+import AxiosConfig from '../../utils/AxiosConfig'
 
 //This class has only one parent: FilterContainer
 //this is responsible to provide filter data/result
@@ -92,14 +93,14 @@ class FilterContainer extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        Axios.get('/api/find/title/' + this.state.titleSearch).then(resp => {
+        AxiosConfig.get('/api/find/title/' + this.state.titleSearch).then(resp => {
             this.setState({ foundTitle: resp.data }, () => {
                 this.props.getFilterResult(this.state.foundTitle)
             })
         })
 
         if (this.state.betweenYearRadio){
-            Axios.get('api/find/year/' + this.state.betweenStartYear + "/"+ this.state.betweenEndYear).then(resp => {
+            AxiosConfig.get('api/find/year/' + this.state.betweenStartYear + "/"+ this.state.betweenEndYear).then(resp => {
                 this.setState({ foundYear: resp.data }, ()=>{
                     this.props.getFilterResult(this.state.foundYear)
                 })
@@ -107,7 +108,7 @@ class FilterContainer extends React.Component {
         }
 
         if (this.state.betweenRatingRadio){
-            Axios.get('api/find/rating/' + this.state.betweenStartSlider  + "/"+ this.state.betweenEndSlider).then(resp => {
+            AxiosConfig.get('api/find/rating/' + this.state.betweenStartSlider  + "/"+ this.state.betweenEndSlider).then(resp => {
                 this.setState({ foundRating: resp.data }, ()=>{
                     this.props.getFilterResult(this.state.foundRating)
                 })

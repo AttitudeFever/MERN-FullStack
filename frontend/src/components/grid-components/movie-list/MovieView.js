@@ -1,7 +1,8 @@
 import React from 'react';
 import SingleMovieDetail from './SingleMovieDetail';
 import loader from '../../../images/loader2.gif';
-import Axios from 'axios';
+//import Axios from 'axios';
+import AxiosConfig from '../../utils/AxiosConfig'
 
 //This Class has only one parent: AllMovieList
 //This class has only one child: SingleMovieDetail
@@ -40,7 +41,7 @@ class MovieView extends React.Component {
     async componentDidMount(){
         this.setState( {isLoading : true } )
         try {
-            Axios.get('/api/movies/' + this.props.viewID).then(resp => {
+            AxiosConfig.get('/api/movies/' + this.props.viewID).then(resp => {
                 this.setState({ viewData: resp.data }, ()=>{
                     this.setState({ isLoading: false })
                 })

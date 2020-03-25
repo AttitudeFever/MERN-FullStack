@@ -3,7 +3,8 @@ import SingleMovieBrief from './SingleMovieBrief';
 import loader from '../../../images/loader2.gif';
 import MovieView from './MovieView';
 import ActorProfileContainer from '../tabs-cast-crew/actor/ActorProfileContainer';
-import Axios from 'axios';
+//import Axios from 'axios';
+import AxiosConfig from '../../utils/AxiosConfig'
 
 //This Class has only one Parent: Main
 //this class has three child components: SingleMovieBrief, MovieView and ActorProfileContainer
@@ -30,7 +31,7 @@ class AllMovieList extends React.Component {
             renderThis = <p className="isLoading" ><img src={loader} alt="Loading" height="80" width="80"/>Loading API....</p>
         } else {
             if (this.props.searchFLAG) {
-                Axios.get('/api/find/title/' + this.props.searchValue).then(resp => {
+                AxiosConfig.get('/api/find/title/' + this.props.searchValue).then(resp => {
                     this.setState({found:resp.data})
                 })
 

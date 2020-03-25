@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import About from './aboutus/About';
 import logo from '../images/logo2.png';
-import Axios from 'axios'
+//import Axios from 'axios'
+import AxiosConfig from './utils/AxiosConfig'
 import {Button,  Layout, Menu, Breadcrumb } from 'antd';
 import { LogoutOutlined, FilterOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -50,7 +51,7 @@ class Home extends React.Component {
     }
 
     handleSignOut() {
-        Axios.get('/logout').then(resp => {
+        AxiosConfig.get('/logout').then(resp => {
             window.location = "https://hms-mern-backend.herokuapp.com/logout"
         })
     }

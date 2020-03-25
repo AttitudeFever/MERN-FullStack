@@ -1,5 +1,4 @@
 import React from 'react'
-//import Axios from 'axios'
 
 //This Class has only one parent: AllMovieList
 //this is responsible to create Movie Brief Cards
