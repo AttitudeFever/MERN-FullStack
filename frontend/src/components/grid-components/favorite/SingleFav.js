@@ -9,7 +9,7 @@ class SingleFav extends React.Component {
         super()
         this.state = {}
         this.deleteFavItem = this.deleteFavItem.bind(this);
-        this.captureViewID = this.captureViewID.bind(this);
+        this.captureFavViewID = this.captureFavViewID.bind(this);
     }
 
     //delete item request
