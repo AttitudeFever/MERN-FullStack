@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home'
 import Main from './components/Main'
 import Axios from 'axios';
@@ -47,14 +47,15 @@ class App extends React.Component {
     render(){
         return (
             <main id="main">
-                
-                <Route path="/" exact render={ (props) => <Home getSearchValue={this.getSearchValue} getFLAGS={this.getFLAGS} />}/>
-                
-                <Route path="/main" exact render={ (props) => <Main searchValue={this.state.searchValue} 
-                    searchFLAG={this.state.searchFLAG} listAllFLAG={this.state.listAllFLAG} 
-                    filterFLAG={this.state.filterFLAG} viewFLAG={this.state.viewFLAG} 
-                    ActorProfileFLAG={this.state.ActorProfileFLAG }getFLAGS={this.getFLAGS} 
-                    currentUserID={this.state.currentUserID}/>}/>
+                <Switch>
+                    <Route path="/" exact render={(props) => <Home getSearchValue={this.getSearchValue} getFLAGS={this.getFLAGS} />} />
+
+                    <Route path="/main" exact render={(props) => <Main searchValue={this.state.searchValue}
+                        searchFLAG={this.state.searchFLAG} listAllFLAG={this.state.listAllFLAG}
+                        filterFLAG={this.state.filterFLAG} viewFLAG={this.state.viewFLAG}
+                        ActorProfileFLAG={this.state.ActorProfileFLAG} getFLAGS={this.getFLAGS}
+                        currentUserID={this.state.currentUserID} />} />
+                </Switch>
             </main>
         )
     }

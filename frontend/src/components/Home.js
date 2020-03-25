@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import About from './aboutus/About';
 import logo from '../images/logo2.png';
 //import Axios from 'axios'
@@ -65,7 +66,7 @@ class Home extends React.Component {
                         <img className="logo2" src={logo} alt="MRU Theater Logo" />
                     </h1>
                     <div className="buttonPackHome" >
-                        <Link to='/login'>
+                        <Link to='/main'>
                             <Button className="AllHome" onClick={this.setListAllFLAG}>List All Movies&nbsp;<i className="fa fa-film"></i></Button>
                         </Link>
                         <About />
