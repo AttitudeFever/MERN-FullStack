@@ -62,7 +62,7 @@ class Main extends React.Component {
     //When componet first formed
     componentDidMount() {
         this.setState({ isLoading: true })
-        //this.storeMainAPILocally();
+        this.storeMainAPILocally();
         this.getUserInfo();
     }
 
