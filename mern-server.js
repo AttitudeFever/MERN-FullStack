@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const flash = require('express-flash');
 const db = require('./handlers/dataConnector.js');
+const path = require('path');
 
 // create connection to database
 db.connect();
@@ -59,6 +60,7 @@ require('./handlers/auth.js');
 
 // set up route handlers LOGIN
 const openRoutes = require('./handlers/openRouter.js');
+app.use(express.static(path.join(__dirname, "./frontend", "build")));
 app.use('/', openRoutes);
 
 // These routes only if logged in
