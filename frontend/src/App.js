@@ -43,7 +43,6 @@ class App extends React.Component {
         })
     }
     
-
     //Rounting is set for SPA
     render(){
         return (
