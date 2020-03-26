@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home'
 import Main from './components/Main'
-import Axios from 'axios';
 import AxiosConfig from './components/utils/AxiosConfig.js'
 
 //This class is responsile to handle Search and diplay FLAGS
@@ -37,9 +36,7 @@ class App extends React.Component {
 
     componentDidMount() {
         AxiosConfig.get('/api/userID').then(resp => {
-            this.setState({ currentUserID: resp.data }, () => {
-                console.log(this.state.currentUserID)
-            })
+            this.setState({ currentUserID: resp.data })
         })
     }
     
@@ -50,7 +47,8 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/" exact render={(props) => <Home getSearchValue={this.getSearchValue} getFLAGS={this.getFLAGS} />} />
 
-                    <Route path="/main" exact render={(props) => <Main searchValue={this.state.searchValue}
+                    <Route path="/main" exact render={(props) => <Main
+                        searchValue={this.state.searchValue}
                         searchFLAG={this.state.searchFLAG} listAllFLAG={this.state.listAllFLAG}
                         filterFLAG={this.state.filterFLAG} viewFLAG={this.state.viewFLAG}
                         ActorProfileFLAG={this.state.ActorProfileFLAG} getFLAGS={this.getFLAGS}

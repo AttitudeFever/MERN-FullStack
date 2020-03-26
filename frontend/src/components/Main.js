@@ -1,5 +1,4 @@
 import React from 'react'
-//import CustomHeader from './grid-components/CustomHeader';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo2.png';
 import About from './aboutus/About';
@@ -9,9 +8,8 @@ import FilterContainter from './grid-components/filter/FilterContainer';
 import UserInfo from './grid-components/UserInfo';
 import * as cloneDeep from 'lodash/cloneDeep';
 import CastCrewContainer from './grid-components/tabs-cast-crew/CastCrewContainer';
-import Axios from 'axios';
 import AxiosConfig from './utils/AxiosConfig'
-import { Layout, Menu, Breadcrumb, Button, Badge } from 'antd';
+import { Layout, Menu, Breadcrumb, Button } from 'antd';
 import { LogoutOutlined, FilterOutlined, UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../static/responsive.css';
@@ -71,7 +69,6 @@ class Main extends React.Component {
     //get user info and populate fav list from db -- nested call backs
     getUserInfo() {
         AxiosConfig.get('/api/users/' + this.props.currentUserID).then(resp => {
-            console.log(resp.data)
             this.setState({ userInfo: resp.data }, () => {
                 this.state.userInfo.map(item => {
                     return this.setState({ favList: item.favorites })
@@ -210,8 +207,8 @@ class Main extends React.Component {
             AxiosConfig.post('/api/add/favorite/' + this.props.currentUserID, itemToAdd);
         }
         else {
-            const found = copyFavs.some(item => {
-                return item.title === title
+            const found = this.state.favList.some(item => {
+                return item.id === id
             })
 
             if (!found) {

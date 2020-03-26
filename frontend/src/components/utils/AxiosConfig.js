@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-const env = process.env.NODE_ENV;
+//const env = process.env.NODE_ENV;
 
 export default Axios.create({
         // baseURL:

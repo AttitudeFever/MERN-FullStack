@@ -1,14 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Route } from 'react-router-dom';
 import About from './aboutus/About';
 import logo from '../images/logo2.png';
-//import Axios from 'axios'
 import AxiosConfig from './utils/AxiosConfig'
-import {Button,  Layout, Menu, Breadcrumb } from 'antd';
-import { LogoutOutlined, FilterOutlined, UserOutlined } from '@ant-design/icons';
-
-const { Header, Content, Footer } = Layout;
+import {Button } from 'antd';
 
 //Parent of this class is App
 //This class has only one child component: About

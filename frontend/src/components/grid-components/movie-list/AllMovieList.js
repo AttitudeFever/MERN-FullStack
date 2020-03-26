@@ -3,7 +3,6 @@ import SingleMovieBrief from './SingleMovieBrief';
 import loader from '../../../images/loader2.gif';
 import MovieView from './MovieView';
 import ActorProfileContainer from '../tabs-cast-crew/actor/ActorProfileContainer';
-//import Axios from 'axios';
 import AxiosConfig from '../../utils/AxiosConfig'
 
 //This Class has only one Parent: Main

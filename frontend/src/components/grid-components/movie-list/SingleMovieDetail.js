@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../../static/singlemoviedetail.css';
-//import 'react-rater/lib/react-rater.css';
 import Rater from 'react-rater';
 import ReactModal from 'react-modal';
 import bgImg from '../../../images/bgAboutus.jpg';

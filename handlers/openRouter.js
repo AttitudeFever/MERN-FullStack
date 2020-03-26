@@ -9,8 +9,6 @@ const path = require('path');
 router.get('/', helper.ensureAuthenticated, (req, resp) => {
    //resp.render('home', {user: req.user});
    if (process.env.NODE_ENV === 'production') {
-      //app.use(express.static(path.join(__dirname, "../frontend", "build")))
-      //app.use(express.static('../frontend/build'))
          resp.sendFile(path.join(__dirname, '../frontend', 'build', 'index.html'))
    }
    else {

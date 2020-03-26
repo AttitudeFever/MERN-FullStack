@@ -1,7 +1,6 @@
 import React from 'react';
 import SingleMovieDetail from './SingleMovieDetail';
 import loader from '../../../images/loader2.gif';
-//import Axios from 'axios';
 import AxiosConfig from '../../utils/AxiosConfig'
 
 //This Class has only one parent: AllMovieList
