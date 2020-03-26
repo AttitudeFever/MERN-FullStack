@@ -9,8 +9,8 @@ function Person(props) {
                 <img src={props.item.img} alt={props.item.name} />
                 <div className="containerP">
                     <h4><b>{props.item.name}</b></h4>
-                    <div className="git"><a href={props.item.githubRepo} >GitHub Profile</a>
-                        <a href={props.item.linkedIn}> LinkedIn Profile</a>
+                    <div className="git"><a href={props.item.githubRepo} target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+                        <a href={props.item.linkedIn} target="_blank" rel="noopener noreferrer"> LinkedIn Profile</a>
                     </div>
                     <p>{props.item.desc}</p>
                 </div>

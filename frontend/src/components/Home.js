@@ -79,10 +79,9 @@ class Home extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        <Button id="homeLogout" onClick={this.handleSignOut}>Logout</Button>
                     </div>
-                    
                 </div>
-                <Button id="homeLogout" onClick={this.handleSignOut}>Logout</Button>
             </div>
         )
     }
