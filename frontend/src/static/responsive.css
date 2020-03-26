@@ -423,8 +423,8 @@
   }
 
     #form h1, #form label{
-      text-shadow: 1px 1px 2px #153b4b;
-      color: white;
+      /* text-shadow: 1px 1px 2px #153b4b; */
+      color: black;
     }
 
     form{
@@ -445,6 +445,7 @@
       box-sizing: border-box;
       border: 1px solid;
       text-shadow: 1px 1px 2px #153b4b;
+      color: #9FA7A9;
     }
 
     .filter input[type=text]:enabled{
@@ -458,6 +459,7 @@
       outline-color: rgba(255, 255, 255, 0);
       outline-offset: 15px;
       text-shadow: 1px 1px 2px #153b4b;
+      color: #000000;
     }
 
     .yearBox{
@@ -473,8 +475,9 @@
       width: 60px;
       height: 30px;
       box-sizing: border-box;
-
+      color: #000000;
       margin: 10px;
+      color: #9FA7A9;
     }
 
     .yearBox input[type=number]:enabled{
@@ -483,6 +486,7 @@
       outline-color: rgba(255, 255, 255, 0);
       outline-offset: 15px;
       text-shadow: 1px 1px 2px #153b4b;
+      color: #000000;
     }
 
     .ratingBox{
@@ -545,7 +549,7 @@ text-shadow: 1px 1px 2px #153b4b;
 }
 .option-input:checked::before {
 height: 10px;
-width: 10px;
+width: 30px;
 position: absolute;
 content: '✔';
 display: inline-block;
@@ -683,6 +687,7 @@ margin-right: 30px;
   transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
   border-radius: 20px;
   margin-left: 10px;
+  color: #000000;
 }
 
 .search:hover {
@@ -700,6 +705,7 @@ text-shadow: none;
 transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
 border-radius: 20px;
 margin-left: 10px;
+color: #000000;
 }
 
 .clear:hover {
