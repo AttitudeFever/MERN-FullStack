@@ -21,7 +21,6 @@ const { SubMenu } = Menu;
 //Parent of this class is: App
 //This class has 5 child components: Header, FavList, FilterContainer, AllMovieList and CastCrewContainer
 
-const LOCAL_STORAGE_KEY = 'movieData';
 let FN;
 class Main extends React.Component {
     constructor() {
@@ -30,6 +29,7 @@ class Main extends React.Component {
             collapsed: false,
             isLoading: false,
             movieData: [],
+            unSortedMovieData: [],
             favList: [],
             filterResult: [],
             production: [],
@@ -59,7 +59,7 @@ class Main extends React.Component {
         this.setState({ collapsed });
     };
 
-    //When componet first formed
+    //When componet first formed, loading api gif comes alive
     componentDidMount() {
         this.setState({ isLoading: true })
         this.storeMainAPILocally();
@@ -77,32 +77,22 @@ class Main extends React.Component {
         })
     }
 
-    //fetch api and and use local storage 
+    //fetch api into unsorted state array, nested callback is used to ensure 
+    // that sorting method only be called when unsorted state array recieved all the data from api
     storeMainAPILocally() {
-        let storedItemList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-
-        if (storedItemList) {
-            this.intialSortBytitle(storedItemList);
-            this.setState({ isLoading: false })
-        }
-        else {
-            try {
-                AxiosConfig.get('/api/movies').then(resp => {
-                    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(resp.data));
-                    storedItemList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-                    this.intialSortBytitle(storedItemList);
-                    this.setState({ isLoading: false })
-                });
-            }
-            catch (error) {
-                console.error(error);
-            }
-        }
+        AxiosConfig.get('/api/movies').then(resp => {
+            this.setState({unSortedMovieData : resp.data}, ()=>{
+                this.intialSortBytitle(this.state.unSortedMovieData);
+            })
+        });
     }
 
     //first sort upon display by title
-    intialSortBytitle(storedItemList) {
-        storedItemList.sort(function (a, b) {
+    //once sorting is finished transfer all sorted data into movieData state array, 
+    //nested call back is used to ensure, loading api gif is only goes dead once all sorted data is transfered
+    //once the data is transfered, empty unsorted array to blank 
+    intialSortBytitle(unSortedMovieData) {
+        unSortedMovieData.sort(function (a, b) {
             if (a.title > b.title) {
                 return 1;
             }
@@ -112,7 +102,11 @@ class Main extends React.Component {
             return 0;
         });
 
-        this.setState({ movieData: storedItemList });
+        this.setState({ movieData: unSortedMovieData }, ()=>{
+            this.setState({ isLoading: false }, ()=>{
+                this.setState({unSortedMovieData: []})
+            })
+        });
     }
 
     //sort by year request, on filter result as awell
