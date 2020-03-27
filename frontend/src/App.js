@@ -45,7 +45,7 @@ class App extends React.Component {
         return (
             <main id="main">
                 <Switch>
-                    <Route path="/" exact render={(props) => <Home getSearchValue={this.getSearchValue} getFLAGS={this.getFLAGS} />} />
+                    <Route path="/" exact render={(props) => <Home getSearchValue={this.getSearchValue} getFLAGS={this.getFLAGS} currentUserID={this.state.currentUserID}/>} />
 
                     <Route path="/main" exact render={(props) => <Main
                         searchValue={this.state.searchValue}

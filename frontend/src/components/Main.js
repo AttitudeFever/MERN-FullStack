@@ -374,7 +374,7 @@ class Main extends React.Component {
                                     getActorID={this.getActorID} FavViewFlag={this.props.FavViewFlag} />
                             </div>
                         </Content>
-                        <Footer style={{ textAlign: 'center' }}>HM'S ©2020 Created with MERN FullStack <About /></Footer>
+                        <Footer className="footer" style={{ textAlign: 'center' }}><p>HM'S ©2020 Created with MERN FullStack </p><About /></Footer>
                     </Layout>
                 </Layout>
     );

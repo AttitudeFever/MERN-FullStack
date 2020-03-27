@@ -121,6 +121,7 @@
     box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
     outline-color: rgba(255, 255, 255, 0);
     outline-offset: 15px; 
+    color: black;
     
   }
    
@@ -131,7 +132,7 @@
   height: 200px;
   font-size: 16px;
   line-height: 26px;
-  color: #B1B0AC;
+  color: white;
   
 }
 
@@ -145,7 +146,7 @@
 }
 
 .fa-flag{
-  color: rgb(121, 94, 151);;
+  color: white;
 }
 
 .BMtag {
@@ -517,6 +518,7 @@ outline-offset: 0px;
  box-shadow: inset 0 0 20px rgba(123, 30, 177, 1), 0 0 20px rgba(17, 228, 228, 1);
  outline-color: rgba(255, 255, 255, 0);
  outline-offset: 15px;
+ color: white;
   }
 
 
@@ -547,4 +549,12 @@ outline-offset: 0px;
 .trailer-preview-actor:hover, .trailer-preview-actor:disabled, .trailer-preview-actor:active, .trailer-preview-actor:focus {
      background-color: white;
      color: white;
+  }
+
+  .container-actor{
+    color: white;
+  }
+
+  .bio{
+    color: white;
   }

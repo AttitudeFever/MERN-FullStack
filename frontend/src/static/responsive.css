@@ -129,6 +129,36 @@
     /* transform: translate(-50%, -50%); */
     transform: scale(0.5);
   }
+
+  .heading2{
+    font-size: 18px;
+  }
+
+  .homeOnMain{
+    font-size: 10px;;
+  }
+  .list{
+    margin-left: -100px;
+  }
+
+  .Bmovie-card{
+    transform: scale(0.3);
+    margin-left: -80px;
+    position: relative;;
+    right:0px;
+    top:-350px;
+    -ms-transform-origin-x: 10%;
+  
+  }
+  .castcrewcontainer{
+    transform: scale(0.4);
+    margin-left: -180px;
+    position: relative;
+    margin-top: -1000px;
+    top:-00px;
+    right:0px;
+    /* -ms-transform-origin-y: 50%; */
+  }
 }
 
 .heading{
@@ -1294,3 +1324,13 @@ outline-offset: 15px;
 text-shadow: 1px 1px 2px #153b4b;
 }
 
+
+/* ///////////////////////////////Footer///////////////////////// */
+.footer{
+}
+.footer > p{
+  margin-top: 50px;;
+  text-align: center;
+  text-shadow: 1px 1px 2px #153b4b;
+  color: #000000;
+}

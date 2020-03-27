@@ -110,7 +110,7 @@ class ActorProfile extends React.Component {
                             <div className="col-8 metadata-actor"><p>Birthday: {birthday} </p></div>
                         </div>
                     </div>
-                    <span>Biography</span>
+                    <span className="bio">Biography</span>
                     <p className="card-text-actor">{biography}</p>
                 </div>
             </div>

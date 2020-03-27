@@ -10,16 +10,18 @@ import {Button } from 'antd';
 //Main is routed from here
 class Home extends React.Component {
 
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
-            searchValue: ""
+            searchValue: "",
+            userInfo:[]
         }
         this.handleChange = this.handleChange.bind(this);
         this.setSearchFLAG = this.setSearchFLAG.bind(this);
         this.setListAllFLAG = this.setListAllFLAG.bind(this);
         this.handleSignOut = this.handleSignOut.bind(this);
     }
+
 
     //handling change on search field
     handleChange(e) {
