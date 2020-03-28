@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import {Link, Switch} from 'react-router-dom';
 import logo from '../images/logo2.png';
 import About from './aboutus/About';
 import AllMovieList from './grid-components/movie-list/AllMovieList';
@@ -293,9 +293,11 @@ class Main extends React.Component {
             <div className="mainDiv">
                 <Layout style={{ minHeight: '100vh', width: 'auto' }}>
                     <Sider className="sider" collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+                    <Switch>
                         <Link to='/'>
                             <img className="logoOnMain" src={logo} alt="HM's Logo" />
                         </Link>
+                        </Switch>
                         <Menu className="Menu" defaultSelectedKeys={['1']} mode="inline">
                             <SubMenu
                                 key="sub2"
@@ -341,9 +343,11 @@ class Main extends React.Component {
                         <Header className="site-layout-background" style={{ padding: 0 }} >
                             <h1 className="heading2">Hi&nbsp;{FN},&nbsp;&nbsp;WELCOME TO HM's MOVIE COLLECTION</h1>
                             <Menu style={{ backgroundColor: "transparent" }}>
-                                <Link to='/'>
-                                    <Button className="homeOnMain">Home <i className="fa fa-home"></i></Button>
-                                </Link>
+                                <Switch>
+                                    <Link to='/'>
+                                        <Button className="homeOnMain">Home <i className="fa fa-home"></i></Button>
+                                    </Link>
+                                </Switch>
                             </Menu>
                         </Header>
                         <Content style={{ margin: '0 16px' }}>
