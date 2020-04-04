@@ -277,16 +277,19 @@ class Main extends React.Component {
         this.setState({ ActorID: ActorID })
     }
 
+    //handle singnout-->redirect
     handleSignOut() {
         AxiosConfig.get('/logout').then(resp => {
             window.location = "https://hms-mern-backend.herokuapp.com/login"
         })
     }
 
+    //Fav movie id get
     getFavViewID(favViewID){
         this.setState({favViewID : favViewID})
     }
 
+    //Ant-Design views
     render() {
         FN = this.state.userInfo.map(item => item.details.firstname)
         return (

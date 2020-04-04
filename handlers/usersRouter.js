@@ -4,6 +4,7 @@ const helper = require('./helpers.js');
 
 const router = express.Router();
 
+//current user id route
 router.get('/userID', helper.ensureAuthenticated, (req, resp) =>{
     resp.json(req.user.id)
 })
@@ -19,7 +20,7 @@ router.get('/users/:id', helper.ensureAuthenticated, (req, resp) => {
     });
 });
 
-// handle POST requests for [domain]/api/favorite/1/ 
+// handle POST requests for [domain]/api/add/favorite/1/ 
 router.post('/add/favorite/:userid', helper.ensureAuthenticated, (req, resp) =>{
     
     //req.body is the dynamic data coming from front end
@@ -40,6 +41,7 @@ router.post('/add/favorite/:userid', helper.ensureAuthenticated, (req, resp) =>{
     });
 })
 
+// handle POST requests for [domain]/api/delete/favorite/1/ 
 router.post('/delete/favorite/:userid', helper.ensureAuthenticated, (req, resp) =>{
     
     //req.body is the dynamic data coming from front end

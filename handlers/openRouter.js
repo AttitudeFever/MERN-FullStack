@@ -5,7 +5,7 @@ const helper = require('./helpers.js');
 const user = require('./usersRouter.js');
 const path = require('path');
 
-// Welcome Page
+// home Page
 router.get('/', helper.ensureAuthenticated, (req, resp) => {
    //resp.render('home', {user: req.user});
    if (process.env.NODE_ENV === 'production') {
@@ -16,11 +16,12 @@ router.get('/', helper.ensureAuthenticated, (req, resp) => {
    }
 });
 
-
+//login route when error
 router.get('/login', (req, resp) => {
    resp.render('login', {message: req.flash('error')});
 });
 
+//logout route
 router.get('/logout', (req, resp) => {
    req.logout();
    req.flash('info', 'You were logged out');
@@ -28,6 +29,7 @@ router.get('/logout', (req, resp) => {
    resp.render('login', { message: req.flash('info') });
 });
 
+//login route normal
 router.post('/login', async (req, resp, next) => {
    // use passport authentication to see if valid login
    passport.authenticate('localLogin',

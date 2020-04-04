@@ -2,7 +2,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 let db;
 
-
+//connect to MogoDb Atlas Database
 const connect = () => {
     const opt = {
         useUnifiedTopology: true,
@@ -16,6 +16,7 @@ const connect = () => {
     });
 };
 
+//handle close connection
 const close = () => {
     console.log("db connection closed")
     try {
